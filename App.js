@@ -1,21 +1,34 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import {app} from './src/styles/index.js'
-import Header from './src/components/Header.js'
-import Bottons from './src/components/buttons.js'
-import Footer from './src/components/Footer.js'
-import Ms from './src/components/Mensagens.js'
-import Aluno from './src/components/form/FormAluno.js'
-import ListAluno from './src/components/listagem/ListAluno.js'
+import React, { Component } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import Mensagem from './src/pages/Mensagens';
+import PagAluno from './src/pages/PagAluno';
+import ListAluno from './src/pages/ListAluno';
+import PagNota from './src/pages/PagNota';
+import ListNota from './src/pages/ListNota'
+import { listenOrientationChange as loc, removeOrientationListener as rol } from 'react-native-responsive-screen';
+const Drawer = createDrawerNavigator();
 
-export default function App() {
-  return (
-    <View style={app.p}>
-      <Header></Header>
-      <Aluno></Aluno>
-      <ListAluno></ListAluno>
-      <Footer></Footer>
+export default class App extends Component{
+  componentDidMount() {
+    loc(this);
+  }
 
-    </View>
-  );
+  componentWillUnMount() {
+    rol();
+  }
+  render(){
+    return (
+      <NavigationContainer>
+        <Drawer.Navigator initialRouteName='Mensagem' drawerType='slide' 
+        hideStatusBar={true} statusBarAnimation='slide' drawerStyle={{backgroundColor: "#adadad"}}>
+          <Drawer.Screen name='Mensagem' component={Mensagem} options={{title: 'Inicio'}}/>
+          <Drawer.Screen name='PagAluno' component={PagAluno} options={{title: 'Cadastrar alunos'}}/>
+          <Drawer.Screen name='ListAluno' component={ListAluno} options={{title: 'Lista de Alunos'}}/>
+          <Drawer.Screen name='PagNota' component={PagNota} options={{title: 'Cadastrar notas'}}/>
+          <Drawer.Screen name='ListNota' component={ListNota} options={{title: 'Lista de notas'}}/>
+        </Drawer.Navigator>
+      </NavigationContainer>
+    );
+  }
 }

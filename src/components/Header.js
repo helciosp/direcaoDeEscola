@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { header } from "../styles/index.js";
 
 export default class Header extends Component {
@@ -7,7 +7,8 @@ export default class Header extends Component {
     return (
       <View style={header.preenchimento}>
         <View style={header.conteine}>
-          <Text style={header.title}>Teste</Text>
+          <Text style={header.title}>Direção de Escola</Text>
+          <Image style={header.img} source={require('../img/logo.png')}></Image>
         </View>
       </View>
     );
