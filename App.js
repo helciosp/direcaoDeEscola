@@ -6,6 +6,7 @@ import PagAluno from './src/pages/PagAluno';
 import ListAluno from './src/pages/ListAluno';
 import PagNota from './src/pages/PagNota';
 import ListNota from './src/pages/ListNota'
+import UpdateAluno from './src/pages/UpdateAluno'
 import { listenOrientationChange as loc, removeOrientationListener as rol } from 'react-native-responsive-screen';
 const Drawer = createDrawerNavigator();
 
@@ -27,6 +28,7 @@ export default class App extends Component{
           <Drawer.Screen name='ListAluno' component={ListAluno} options={{title: 'Lista de Alunos'}}/>
           <Drawer.Screen name='PagNota' component={PagNota} options={{title: 'Cadastrar notas'}}/>
           <Drawer.Screen name='ListNota' component={ListNota} options={{title: 'Lista de notas'}}/>
+          <Drawer.Screen name='UpdateAluno' component={UpdateAluno} options={{title: 'Atualizar Alunos'}}/>
         </Drawer.Navigator>
       </NavigationContainer>
     );

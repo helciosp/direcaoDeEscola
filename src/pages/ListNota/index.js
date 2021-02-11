@@ -25,7 +25,7 @@ export default class ListAluno extends Component {
     render() {
         return (
             <View style={app.pagina}>
-                <Header/>
+                <Header metodo={this.props.navigation} />
                 <View style={app.conteine}>
                     <FlatList
                         data={this.state.notes}

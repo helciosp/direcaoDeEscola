@@ -25,12 +25,12 @@ export default class ListAluno extends Component {
     render() {
         return (
             <View style={app.pagina}>
-                <Header/>
+                <Header  metodo={this.props.navigation} />
                 <View style={app.conteine}>
                     <FlatList
                         data={this.state.students}
                         keyExtractor={(item, index) => item.idAluno + ''}
-                        renderItem={({ item }) => <Students {...item} />}
+                        renderItem={({ item }) => <Students {...item} metodo={this.props.navigation} />}
                     />
                 </View>
             </View>

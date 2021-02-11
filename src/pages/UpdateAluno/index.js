@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableNativeFeedback,  DevSettings } from 're
 import Header from '../../components/Header.js'
 import { pagAluno, app } from '../../styles/index.js';
 import DataBase from '../../my_db/DataBase.js';
-import Notas from '../../model/Notas.js';
+import Aluno from '../../model/Aluno.js';
 
 export default class PagNota extends Component {
     constructor(props) {
@@ -11,14 +11,15 @@ export default class PagNota extends Component {
         this.state = {
             idAluno: '',
             nomeAluno: '',
-            matematica: '',
+            turma: '',
         };
     }
 
-    cadastrarNota(idAluno, nomeAluno, matematica) {
-        const notas = new Notas(idAluno, nomeAluno, matematica);
+    Update(idAluno, nomeAluno, turma) {
+        const prod = new Aluno(nomeAluno, turma);
         const db = new DataBase();
-        db.adicionarNota(notas);
+        let NewIdAluno = idAluno;
+        db.atualizar(NewIdAluno, prod);
         DevSettings.reload();
     }
     render() {
@@ -33,29 +34,30 @@ export default class PagNota extends Component {
                                 keyboardType="numeric"
                                 placeholder="Informe o Id"
                                 onChangeText={(idA) => this.setState({ idAluno: idA })}
+                                value= {this.props.id}
                             />
                         </View>
                         <View style={pagAluno.campos}>
                         <Text>Aluno:</Text>
                         <TextInput 
-                            placeholder="Infome o aluno"
+                            placeholder="Infome o nome do aluno(a)"
                             maxLength={30}
                             onChangeText={(nom) => this.setState({nomeAluno: nom})}
                             />
                         </View>
                         <View style={pagAluno.campos}>
-                            <Text>Nota de matematica:</Text>
+                            <Text>Turma:</Text>
                             <TextInput
                                 keyboardType="numeric"
-                                placeholder="Informe a nota de matematica"
-                                maxLength={3}
-                                onChangeText={(mat) => this.setState({ matematica: mat })}
+                                placeholder="Informe a turma"
+                                maxLength={10}
+                                onChangeText={(tur) => this.setState({ turma: tur })}
                             />
                         </View>
                         
                         <TouchableNativeFeedback
                             onPress={() => {
-                                this.cadastrarNota(this.state.idAluno, this.state.nomeAluno, this.state.matematica);
+                                this.Update(this.state.idAluno, this.state.nomeAluno, this.state.turma);
                             }}
                             background={
                                 Platform.OS === 'android'

@@ -21,7 +21,7 @@ export default class Students extends Component {
                             <Text>Turma: {this.props.turma}</Text>
                         </View>
                         <View style={list.botaoView}>
-                            <TouchableOpacity style={list.botao}>
+                            <TouchableOpacity style={list.botao} onPress={() => {this.props.metodo.navigate('UpdateAluno')}}>
                                 <View>
                                     <Text style={list.botaoText1}>Modificar</Text>
                                 </View>
@@ -46,7 +46,7 @@ export default class Students extends Component {
                             <Text>Turma: {this.props.turma}</Text>
                         </View>
                         <View style={list.botaoView}>
-                            <TouchableOpacity style={list.botao}>
+                            <TouchableOpacity style={list.botao} onPress={() => this.props.metodo.navigate('UpdateAluno')}>
                                 <View>
                                     <Text style={list.botaoText1}>Modificar</Text>
                                 </View>

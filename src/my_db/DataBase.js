@@ -228,51 +228,16 @@ export default class Database {
                 });
         });
     }
-
-    // Buscar por ID
-    buscarPorId(id) {
-        console.log(id);
-        return new Promise((resolve) => {
-            this.conectar()
-                .then((db) => {
-                    db.transaction((tx) => {
-                        //Query SQL para buscar as informações do produto
-                        tx.executeSql('SELECT * FROM Produtos WHERE id = ?', [id]).then(
-                            ([tx, results]) => {
-                                console.log(results);
-                                if (results.rows.length > 0) {
-                                    let row = results.rows.item(0);
-                                    resolve(row);
-                                }
-                            },
-                        );
-                    })
-                        .then((result) => {
-                            this.desconectar(db);
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        });
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        });
-    }
-
-    // Adicionar Produto
-
-
     // Editar Produto
-    atualizar(id, prod) {
+    atualizar(idAluno, prod) {
         return new Promise((resolve) => {
             this.conectar()
                 .then((db) => {
                     db.transaction((tx) => {
                         //Query SQL para atualizar um dado no banco
                         tx.executeSql(
-                            'UPDATE tarefa SET nome = ?, fabricante = ? WHERE id = ?',
-                            [prod.nome, prod.fabricante, id],
+                            'UPDATE aluno SET nomeAluno = ?, turma = ?,  WHERE idAluno = ?',
+                            [prod.nomeAluno, prod.turma, idAluno],
                         ).then(([tx, results]) => {
                             resolve(results);
                         });

@@ -23,7 +23,7 @@ export default class PagAluno extends Component {
   render() {
     return (
       <View style={app.pagina}>
-        <Header />
+        <Header metodo={this.props.navigation} />
         <View style={app.conteine}>
           <View style={pagAluno.margin}>
             <View style={pagAluno.campos}>

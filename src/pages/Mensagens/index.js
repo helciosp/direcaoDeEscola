@@ -22,7 +22,7 @@ export default class Mensagens extends Component {
                 return (
 
                     <View style={app.pagina}>
-                        <Header />
+                        <Header metodo={this.props.navigation}/>
                         <View style={mensagens.conteine}>
                             <View style={mensagens.margin}>
                                 <View>
@@ -37,7 +37,7 @@ export default class Mensagens extends Component {
             case 1:
                 return (
                     <View style={app.pagina}>
-                        <Header />
+                        <Header metodo={this.props.navigation} />
                         <View style={mensagens.conteine}>
                             <View style={mensagens.margin}>
                                 <View>
@@ -51,8 +51,8 @@ export default class Mensagens extends Component {
                 break;
             case 2:
                 return (
-                    <View  style={app.pagina}>
-                        <Header />
+                    <View style={app.pagina}>
+                        <Header metodo={this.props.navigation} />
                         <View style={mensagens.conteine}>
                             <View style={mensagens.margin}>
                                 <View>
@@ -67,7 +67,7 @@ export default class Mensagens extends Component {
             case 3:
                 return (
                     <View  style={app.pagina}>
-                        <Header />
+                        <Header metodo={this.props.navigation} />
                         <View style={mensagens.conteine}>
                             <View style={mensagens.margin}>
                                 <View>
@@ -82,7 +82,7 @@ export default class Mensagens extends Component {
             case 4:
                 return (
                     <View  style={app.pagina}>
-                        <Header />
+                        <Header metodo={this.props.navigation}/>
                         <View style={mensagens.conteine}>
                             <View style={mensagens.margin}>
                                 <View>
@@ -97,7 +97,7 @@ export default class Mensagens extends Component {
             case 5:
                 return (
                     <View  style={app.pagina}>
-                        <Header />
+                        <Header metodo={this.props.navigation} />
                         <View style={mensagens.conteine}>
                             <View style={mensagens.margin}>
                                 <View>
@@ -112,7 +112,7 @@ export default class Mensagens extends Component {
             case 6:
                 return (
                     <View  style={app.pagina}>
-                        <Header />
+                        <Header metodo={this.props.navigation} />
                         <View style={mensagens.conteine}>
                             <View style={mensagens.margin}>
                                 <View>
