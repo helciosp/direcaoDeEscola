@@ -54,7 +54,7 @@ export default class PagAluno extends Component {
               }>
               <View style={pagAluno.botao}>
                 <Text style={pagAluno.botaoText}>
-                  {'Cadastra: ' + this.state.nomeAluno}{' '}
+                  Cadastrar
                   {Platform.OS !== 'android' ? '(Android only)' : ''}
                 </Text>
               </View>

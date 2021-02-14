@@ -21,9 +21,14 @@ export default class Students extends Component {
                             <Text>Turma: {this.props.turma}</Text>
                         </View>
                         <View style={list.botaoView}>
-                            <TouchableOpacity style={list.botao} onPress={() => {this.props.metodo.navigate('UpdateAluno')}}>
+                            <TouchableOpacity style={list.botao} onPress={() => {this.props.metodo.navigate('UpdateAluno', {idAluno: this.props.idAluno})}}>
                                 <View>
                                     <Text style={list.botaoText1}>Modificar</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={list.botao} onPress={() => {this.props.metodo.navigate('PagNota', {idAluno: this.props.idAluno, nomeAluno: this.props.nomeAluno})}}>
+                                <View>
+                                    <Text style={list.botaoText2}>Adicionar nota</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={list.botao} onPress={() => this.delete(this.props.idAluno)}>
@@ -46,9 +51,14 @@ export default class Students extends Component {
                             <Text>Turma: {this.props.turma}</Text>
                         </View>
                         <View style={list.botaoView}>
-                            <TouchableOpacity style={list.botao} onPress={() => this.props.metodo.navigate('UpdateAluno')}>
+                            <TouchableOpacity style={list.botao} onPress={() => {this.props.metodo.navigate('UpdateAluno', {idAluno: this.props.idAluno})}}>
                                 <View>
                                     <Text style={list.botaoText1}>Modificar</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={list.botao} onPress={() => {this.props.metodo.navigate('PagNota', {idAluno: this.props.idAluno, nomeAluno: this.props.nomeAluno})}}>
+                                <View>
+                                    <Text style={list.botaoText2}>Adicionar nota</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={list.botao} onPress={() => this.delete(this.props.idAluno)}>

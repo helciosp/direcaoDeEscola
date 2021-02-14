@@ -50,7 +50,6 @@ export default class Database {
                                     console.log(
                                         'O Banco de dados não está pronto ... Criando Dados',
                                     );
-
                                     db.transaction((tx) => {
                                         tx.executeSql('CREATE TABLE IF NOT EXISTS aluno (idAluno INTEGER PRIMARY KEY AUTOINCREMENT, nomeAluno VARCHAR(30), turma VARCHAR(10))');
                                     })
@@ -72,9 +71,9 @@ export default class Database {
                                     console.log(
                                         'O Banco de dados não está pronto ... Criando Dados para tabela notas',
                                     );
-                                   
+
                                     db.transaction((tx) => {
-                                        tx.executeSql('CREATE TABLE IF NOT EXISTS notas (idNotas INTEGER PRIMARY KEY AUTOINCREMENT,nomeAluno VARCHAR(30), matematica VARCHAR(10), idAluno Varchar(10))'); //FOREIGN KEY (idAluno) REFERENCES aluno(idAluno)
+                                        tx.executeSql('CREATE TABLE IF NOT EXISTS notas (idNotas INTEGER PRIMARY KEY AUTOINCREMENT,nomeAluno VARCHAR(30), artes VARCHAR(3), biologia VARCHAR(3), educacaoFisica VARCHAR(3), fisica VARCHAR(3), geografia VARCHAR(3), historia VARCHAR(3), ingles VARCHAR(3), matematica VARCHAR(3), portuguesLiteratura VARCHAR(3), quimica VARCHAR(3), sociologia VARCHAR(3), idAluno INTEGER)'); //FOREIGN KEY (idAluno) REFERENCES aluno(idAluno)
                                     })
                                         .then(() => {
                                             console.log('Tabela criada com Sucesso');
@@ -142,11 +141,21 @@ export default class Database {
                 .then((db) => {
                     db.transaction((tx) => {
                         //Query SQL para inserir um novo produto
-                        tx.executeSql('INSERT INTO notas VALUES (?, ?, ?, ?)', [
+                        tx.executeSql('INSERT INTO notas VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
                             notas.idNotas,
-                            notas.idAluno,
                             notas.nomeAluno,
-                            notas.matematica,                      
+                            notas.artes,
+                            notas.biologia,
+                            notas.educacaoFisica,
+                            notas.fisica,
+                            notas.geografia,
+                            notas.historia,
+                            notas.ingles,
+                            notas.matematica,
+                            notas.portuguesLiteratura,
+                            notas.quimica,
+                            notas.sociologia,
+                            notas.idAluno,
                         ]).then(([tx, results]) => {
                             resolve(results);
                         });
@@ -208,8 +217,37 @@ export default class Database {
                                 var len = results.rows.length;
                                 for (let i = 0; i < len; i++) {
                                     let row = results.rows.item(i);
-                                    const { idNotas, idAluno, nomeAluno, matematica } = row;
-                                    notas.push({ idNotas ,idAluno, nomeAluno, matematica });
+                                    const { idNotas,
+                                        nomeAluno,
+                                        artes,
+                                        biologia,
+                                        educacaoFisica,
+                                        fisica,
+                                        geografia,
+                                        historia,
+                                        ingles,
+                                        matematica,
+                                        portuguesLiteratura,
+                                        quimica,
+                                        sociologia,
+                                        idAluno,
+                                    } = row;
+                                    notas.push({
+                                        idNotas,
+                                        nomeAluno,
+                                        artes,
+                                        biologia,
+                                        educacaoFisica,
+                                        fisica,
+                                        geografia,
+                                        historia,
+                                        ingles,
+                                        matematica,
+                                        portuguesLiteratura,
+                                        quimica,
+                                        sociologia,
+                                        idAluno,
+                                    });
                                 }
                                 console.log(notas);
                                 resolve(notas);
@@ -236,7 +274,7 @@ export default class Database {
                     db.transaction((tx) => {
                         //Query SQL para atualizar um dado no banco
                         tx.executeSql(
-                            'UPDATE aluno SET nomeAluno = ?, turma = ?,  WHERE idAluno = ?',
+                            'UPDATE aluno SET nomeAluno = ?, turma = ? WHERE idAluno = ?',
                             [prod.nomeAluno, prod.turma, idAluno],
                         ).then(([tx, results]) => {
                             resolve(results);
@@ -291,6 +329,43 @@ export default class Database {
                                 resolve(results);
                             },
                         );
+                    })
+                        .then((result) => {
+                            this.desconectar(db);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        });
+    }
+    atualizarNotas(idNotas, notas) {
+        return new Promise((resolve) => {
+            this.conectar()
+                .then((db) => {
+                    db.transaction((tx) => {
+                        //Query SQL para atualizar um dado no banco
+                        tx.executeSql(
+                            'UPDATE notas SET artes = ?, biologia = ?, educacaoFisica = ?, fisica = ?, geografia = ?, historia = ?, ingles = ?, matematica = ?, portuguesLiteratura = ?, quimica = ?, sociologia = ? WHERE idNotas = ?',
+                            [
+                                notas.artes,
+                                notas.biologia,
+                                notas.educacaoFisica,
+                                notas.fisica,
+                                notas.geografia,
+                                notas.historia,
+                                notas.ingles,
+                                notas.matematica,
+                                notas.portuguesLiteratura,
+                                notas.quimica,
+                                notas.sociologia,
+                                idNotas,],
+                        ).then(([tx, results]) => {
+                            resolve(results);
+                        });
                     })
                         .then((result) => {
                             this.desconectar(db);

@@ -1,6 +1,5 @@
-export default class Nota {
+export default class UpNota {
     constructor( 
-        nomeAluno,
         artes,
         biologia,
         educacaoFisica,
@@ -12,9 +11,7 @@ export default class Nota {
         portuguesLiteratura,
         quimica,
         sociologia,
-        idAluno,
     ) {
-        this.nomeAluno = nomeAluno;
         this.artes = artes;
         this.biologia = biologia;
         this.educacaoFisica = educacaoFisica;
@@ -26,6 +23,5 @@ export default class Nota {
         this.portuguesLiteratura = portuguesLiteratura;
         this.quimica = quimica;
         this.sociologia = sociologia;
-        this.idAluno = idAluno;
     }
 }

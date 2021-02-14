@@ -9,7 +9,7 @@ import {
 import Header from '../../components/Header.js';
 import { pagAluno, app } from '../../styles/index.js';
 import DataBase from '../../my_db/DataBase.js';
-import Notas from '../../model/Notas.js';
+import UpNotas from '../../model/UpNotas.js';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export default class PagNota extends Component {
@@ -30,7 +30,7 @@ export default class PagNota extends Component {
         };
     }
 
-    cadastrarNota(
+    alterarNotas(
         artes,
         biologia,
         educacaoFisica,
@@ -43,9 +43,8 @@ export default class PagNota extends Component {
         quimica,
         sociologia,
     ) {
-        const { idAluno, nomeAluno } = this.props.route.params;
-        const notas = new Notas(
-            nomeAluno,
+        const db = new DataBase();
+        const notas = new UpNotas(
             artes,
             biologia,
             educacaoFisica,
@@ -57,18 +56,18 @@ export default class PagNota extends Component {
             portuguesLiteratura,
             quimica,
             sociologia,
-            idAluno,
         );
-        const db = new DataBase();
-        db.adicionarNota(notas);
+        const { idNotas } = this.props.route.params;
+        db.atualizarNotas(idNotas, notas);
         DevSettings.reload();
     }
     render() {
-        const { idAluno, nomeAluno } = this.props.route.params;
+        const { nomeAluno } = this.props.route.params;
         return (
             <ScrollView>
                 <View style={app.pagina}>
                     <Header metodo={this.props.navigation} />
+
                     <View style={app.conteine}>
                         <View style={pagAluno.margin}>
                             <View style={pagAluno.campos}>
@@ -172,9 +171,10 @@ export default class PagNota extends Component {
                                     onChangeText={(soc) => this.setState({ sociologia: soc })}
                                 />
                             </View>
+
                             <TouchableNativeFeedback
                                 onPress={() => {
-                                    this.cadastrarNota(
+                                    this.alterarNotas(
                                         this.state.artes,
                                         this.state.biologia,
                                         this.state.educacaoFisica,
@@ -195,7 +195,7 @@ export default class PagNota extends Component {
                                 }>
                                 <View style={pagAluno.botao}>
                                     <Text style={pagAluno.botaoText}>
-                                        {"Cadastrar notas de(a) " + nomeAluno + ", id " + idAluno}
+                                        {"Modificar notas de: " + nomeAluno}
                                         {Platform.OS !== 'android' ? '(Android only)' : ''}
                                     </Text>
                                 </View>

@@ -79,6 +79,10 @@ const list = StyleSheet.create({
     width: wp('100%'),
     height: hp('20%'),
   },
+  lista2: {
+    width: wp('100%'),
+    height: hp('45%'),
+  },
   center: {
     margin: 20,
     backgroundColor: '#999999',
@@ -105,6 +109,11 @@ const list = StyleSheet.create({
   botaoText1: {
     fontSize: 14,
     color: 'white',
+    textAlign: 'right'
+  },
+  botaoText2: {
+    fontSize: 14,
+    color: 'green',
     textAlign: 'right'
   },
 

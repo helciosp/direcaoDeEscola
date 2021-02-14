@@ -14,16 +14,26 @@ export default class Students extends Component {
         if (this.props.idNotas % 2 == 0) {
             return (
 
-                <View style={list.lista}>
+                <View style={list.lista2}>
                     <View style={list.centerPar}>
                         <View>
-                            <Text>Id Nota: {this.props.idNotas}</Text>
-                            <Text>Id Aluno: {this.props.idAluno}</Text>
+                            <Text>Id Nota: {this.props.idNotas}</Text> 
                             <Text>Estudante: {this.props.nomeAluno}</Text>
-                            <Text>Nota de matemática: {this.props.matematica}</Text>
+                            <Text>Artes: {this.props.artes}</Text>
+                            <Text>Biologia: {this.props.biologia}</Text>
+                            <Text>Edução Física: {this.props.educacaoFisica}</Text>
+                            <Text>Física: {this.props.fisica}</Text>
+                            <Text>Geografia: {this.props.geografia}</Text>
+                            <Text>História: {this.props.historia}</Text>
+                            <Text>Inglês: {this.props.ingles}</Text>
+                            <Text>Matemática: {this.props.matematica}</Text>
+                            <Text>Português/Literatura: {this.props.portuguesLiteratura}</Text>
+                            <Text>Química: {this.props.quimica}</Text>
+                            <Text>Sociologia: {this.props.sociologia}</Text>
+                            <Text>Id Aluno: {this.props.idAluno}</Text>
                         </View>
                         <View style={list.botaoView}>
-                            <TouchableOpacity style={list.botao}>
+                            <TouchableOpacity style={list.botao} onPress={() => {this.props.metodo.navigate('UpdateNotas', {idNotas: this.props.idNotas, nomeAluno: this.props.nomeAluno})}}>
                                 <View>
                                     <Text style={list.botaoText1}>Modificar</Text>
                                 </View>
@@ -41,16 +51,26 @@ export default class Students extends Component {
         else {
             return (
 
-                <View style={list.lista}>
+                <View style={list.lista2}>
                     <View style={list.center}>
                         <View>
-                            <Text>Id Nota: {this.props.idNotas}</Text>
-                            <Text>Id Aluno: {this.props.idAluno}</Text>
+                            <Text>Id Nota: {this.props.idNotas}</Text> 
                             <Text>Estudante: {this.props.nomeAluno}</Text>
-                            <Text>Nota de matemática: {this.props.matematica}</Text>
+                            <Text>Artes: {this.props.artes}</Text>
+                            <Text>Biologia: {this.props.biologia}</Text>
+                            <Text>Edução Física: {this.props.educacaoFisica}</Text>
+                            <Text>Física: {this.props.fisica}</Text>
+                            <Text>Geografia: {this.props.geografia}</Text>
+                            <Text>História: {this.props.historia}</Text>
+                            <Text>Inglês: {this.props.ingles}</Text>
+                            <Text>Matemática: {this.props.matematica}</Text>
+                            <Text>Português/Literatura: {this.props.portuguesLiteratura}</Text>
+                            <Text>Química: {this.props.quimica}</Text>
+                            <Text>Sociologia: {this.props.sociologia}</Text>
+                            <Text>Id Aluno: {this.props.idAluno}</Text>
                         </View>
                         <View style={list.botaoView}>
-                            <TouchableOpacity style={list.botao}>
+                            <TouchableOpacity style={list.botao} onPress={() => {this.props.metodo.navigate('UpdateNotas', {idNotas: this.props.idNotas, nomeAluno: this.props.nomeAluno})}}>
                                 <View>
                                     <Text style={list.botaoText1}>Modificar</Text>
                                 </View>
