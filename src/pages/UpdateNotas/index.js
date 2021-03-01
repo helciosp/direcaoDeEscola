@@ -27,6 +27,7 @@ export default class PagNota extends Component {
             portuguesLiteratura: '',
             quimica: '',
             sociologia: '',
+            error: '',
         };
     }
 
@@ -43,23 +44,30 @@ export default class PagNota extends Component {
         quimica,
         sociologia,
     ) {
-        const db = new DataBase();
-        const notas = new UpNotas(
-            artes,
-            biologia,
-            educacaoFisica,
-            fisica,
-            geografia,
-            historia,
-            ingles,
-            matematica,
-            portuguesLiteratura,
-            quimica,
-            sociologia,
-        );
         const { idNotas } = this.props.route.params;
-        db.atualizarNotas(idNotas, notas);
-        DevSettings.reload();
+        if (idNotas == "NÃO SELECIONADO") {
+            this.setState({ error: 'Error! Selecione uma nota na lista.' })
+        }
+        else {
+            const db = new DataBase();
+            const notas = new UpNotas(
+                artes,
+                biologia,
+                educacaoFisica,
+                fisica,
+                geografia,
+                historia,
+                ingles,
+                matematica,
+                portuguesLiteratura,
+                quimica,
+                sociologia,
+            );
+
+            db.atualizarNotas(idNotas, notas);
+            DevSettings.reload();
+        }
+
     }
     render() {
         const { nomeAluno } = this.props.route.params;
@@ -200,6 +208,7 @@ export default class PagNota extends Component {
                                     </Text>
                                 </View>
                             </TouchableNativeFeedback>
+                            <Text style={app.error}>{this.state.error}</Text>
                         </View>
                     </View>
                 </View>

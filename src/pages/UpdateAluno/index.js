@@ -12,6 +12,7 @@ export default class PagNota extends Component {
             idAluno: '',
             nomeAluno: '',
             turma: '',
+            error: ''
         };
     }
 
@@ -19,8 +20,14 @@ export default class PagNota extends Component {
         const prod = new Aluno(nomeAluno, turma);
         const db = new DataBase();
         const { idAluno } = this.props.route.params;
-        db.atualizar(idAluno, prod);
-        DevSettings.reload();
+        if(idAluno == "NÃO SELECIONADO"){
+            this.setState({error: 'Error! Selecione um aluno na lista.'})
+        }
+        else{
+           this.setState({error: ''})
+           db.atualizar(idAluno, prod);
+           DevSettings.reload(); 
+        }
     }
     
     render() {
@@ -64,6 +71,7 @@ export default class PagNota extends Component {
                                 </Text>
                             </View>
                         </TouchableNativeFeedback>
+                        <Text style={app.error}>{this.state.error}</Text>
                     </View>
                 </View>
             </View>

@@ -41,7 +41,6 @@ class direcao extends Component {
         <Drawer.Screen name='Mensagem' component={Mensagem} options={{ title: 'Inicio' }} />
         <Drawer.Screen name='PagAluno' component={PagAluno} options={{ title: 'Cadastrar alunos' }} />
         <Drawer.Screen name="partAluno" component={partAluno} options={{ title: "Alunos" }} />      
-        
         <Drawer.Screen name="partNota" component={partNota} options={{ title: 'Notas' }} />
       </Drawer.Navigator>
     )
@@ -52,8 +51,8 @@ class partAluno extends Component {
     return (
       <Tap.Navigator initialRouteName = {"ListAluno"}>
         <Tap.Screen name = "ListAluno" component = {ListAluno} options={{ title: 'Lista de Alunos' }}/>
-        <Tap.Screen name='PagNota' component={PagNota} options={{ title: 'Cadastrar notas' }} />
-        <Tap.Screen name='UpdateAluno' component={UpdateAluno} options={{ title: 'Atualizar Alunos' }} />
+        <Tap.Screen name='PagNota' initialParams={{idAluno: "NÃO SELECIONADO", nomeAluno: "****" }} component={PagNota} options={{ title: 'Cadastrar notas' }} />
+        <Tap.Screen name='UpdateAluno' initialParams={{idAluno: "NÃO SELECIONADO" }} component={UpdateAluno} options={{ title: 'Atualizar Alunos' }} />
       </Tap.Navigator>
     )
   }
@@ -63,7 +62,7 @@ class partNota extends Component {
     return(
       <Tap.Navigator initialRouteName = {"ListaNota"}>
         <Tap.Screen name='ListNota' component={ListNota} options={{ title: 'Lista de notas' }} />  
-        <Tap.Screen name='UpdateNotas' component={UpdateNotas} options={{ title: 'Atualizar Notas' }} />
+        <Tap.Screen name='UpdateNotas' initialParams={{idNotas: "NÃO SELECIONADO", nomeAluno: "****" }} component={UpdateNotas} options={{ title: 'Atualizar Notas' }} />
       </Tap.Navigator>
     )
   }

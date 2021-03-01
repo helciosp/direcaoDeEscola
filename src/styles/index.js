@@ -14,6 +14,11 @@ const app = StyleSheet.create({
   },
   conteine: {
     flex: 7
+  },
+  error: {
+    textAlign: 'center',
+    color: 'red',
+    fontSize: 16
   }
 });
 const header = StyleSheet.create({
@@ -134,7 +139,8 @@ const pagAluno = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     borderRadius: 5
-  }
+  },
+  
 })
 
 export { app, header, bts, footer, mensagens, list, pagAluno };
