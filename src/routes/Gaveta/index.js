@@ -11,7 +11,7 @@ export default class Gaveta extends Component {
   render() {
     return (
       <Drawer.Navigator initialRouteName={"Mensagem"} drawerStyle={{ backgroundColor: "#adadad" }}>
-        <Drawer.Screen name='Mensagem' component={Mensagem} options={{ title: 'Inicio' }} />
+        <Drawer.Screen name='Mensagem' component={Mensagem} options={{title: 'Inicio'}} />
         <Drawer.Screen name='PagAluno' component={PagAluno} options={{ title: 'Cadastrar alunos' }} />
         <Drawer.Screen name="ListAluno" component={ListAluno} options={{ title: 'Lista de Alunos' }} />
         <Drawer.Screen name='ListNota' component={ListNota} options={{ title: 'Lista de notas' }} />

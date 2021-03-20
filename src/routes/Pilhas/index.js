@@ -6,27 +6,28 @@ import UpdateAluno from '../../pages/UpdateAluno';
 import UpdateNotas from '../../pages/UpdateNotas';
 import Gaveta from '../Gaveta';
 import InconDrawer from '../../components/InconDrawer'
+import {header} from '../../options/index'
 
 const Stack = createStackNavigator();
 
 export default class Pilhas extends Component {
-  render() {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name={"direcao"} component={Gaveta}
-            options={({ navigation }) => ({
-              title: 'Direção de Escola',
-              headerStyle: { backgroundColor: 'red' },
-              headerTitleStyle: { color: 'white' },
-              headerLeft: () => <InconDrawer navigationDrawer={navigation} />
-            })}
-          />
-          <Stack.Screen name='PagNota' initialParams={{ idAluno: "NÃO SELECIONADO", nomeAluno: "****" }} component={PagNota} options={{ title: 'Cadastrar notas', headerStyle: { backgroundColor: 'red' }, headerTitleStyle: { color: 'white' }, headerTintColor: 'white' }} />
-          <Stack.Screen name='UpdateAluno' initialParams={{ idAluno: "NÃO SELECIONADO" }} component={UpdateAluno} options={{ title: 'Atualizar Alunos', headerStyle: { backgroundColor: 'red' }, headerTitleStyle: { color: 'white' }, headerTintColor: 'white' }} />
-          <Stack.Screen name='UpdateNotas' initialParams={{ idNotas: "NÃO SELECIONADO", nomeAluno: "****" }} component={UpdateNotas} options={{ title: 'Atualizar Notas', headerStyle: { backgroundColor: 'red' }, headerTitleStyle: { color: 'white' }, headerTintColor: 'white' }} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
+    render() {
+        return (
+            <NavigationContainer>
+                <Stack.Navigator>
+                    <Stack.Screen name={"Gaveta"} component={Gaveta}
+                        options={({ navigation }) => ({
+                            title: 'Direção de Escola',
+                            headerStyle: { backgroundColor: 'red' },
+                            headerTitleStyle: { color: 'white' },
+                            headerLeft: () => <InconDrawer navigationDrawer={navigation} />
+                        })}
+                    />
+                    <Stack.Screen name='PagNota' component={PagNota} options={header.cadasNs} />
+                    <Stack.Screen name='UpdateAluno' component={UpdateAluno} options={header.atuaAls} />
+                    <Stack.Screen name='UpdateNotas' component={UpdateNotas} options={header.atuaNs} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        );
+    }
 }
