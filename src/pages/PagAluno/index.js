@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, Button, DevSettings, TouchableNativeFeedback} from 'react-native';
+import {View, Text, TextInput, DevSettings, TouchableNativeFeedback} from 'react-native';
 import Database from '../../my_db/DataBase';
 import Aluno from '../../model/Aluno.js';
 import {app, pagAluno} from '../../styles/index.js';
-import Header from '../../components/Header.js';
 const db = new Database();
 
 export default class PagAluno extends Component {
@@ -23,7 +22,6 @@ export default class PagAluno extends Component {
   render() {
     return (
       <View style={app.pagina}>
-        <Header metodo={this.props.navigation} />
         <View style={app.conteine}>
           <View style={pagAluno.margin}>
             <View style={pagAluno.campos}>

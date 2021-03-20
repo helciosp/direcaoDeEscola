@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList } from 'react-native'
 import Notes from '../../components/listagem/Notes.js'
-import Header from '../../components/Header.js'
 import Database from '../../my_db/DataBase.js';
 import { app, students } from '../../styles/index.js'
 
@@ -24,8 +23,7 @@ export default class ListAluno extends Component {
     }
     render() {
         return (
-            <View style={app.pagina}>
-                <Header metodo={this.props.navigation} />
+            <View style={app.pagina}>            
                 <View style={app.conteine}>
                     <FlatList
                         data={this.state.notes}

@@ -6,7 +6,6 @@ import {
     TouchableNativeFeedback,
     DevSettings,
 } from 'react-native';
-import Header from '../../components/Header.js';
 import { pagAluno, app } from '../../styles/index.js';
 import DataBase from '../../my_db/DataBase.js';
 import UpNotas from '../../model/UpNotas.js';
@@ -74,8 +73,6 @@ export default class PagNota extends Component {
         return (
             <ScrollView>
                 <View style={app.pagina}>
-                    <Header metodo={this.props.navigation} />
-
                     <View style={app.conteine}>
                         <View style={pagAluno.margin}>
                             <View style={pagAluno.campos}>

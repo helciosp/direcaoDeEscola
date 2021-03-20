@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableNativeFeedback, DevSettings } from 'react-native';
-import Header from '../../components/Header.js'
 import { pagAluno, app } from '../../styles/index.js';
 import DataBase from '../../my_db/DataBase.js';
 import Aluno from '../../model/Aluno.js';
@@ -34,7 +33,6 @@ export default class PagNota extends Component {
         const { idAluno } = this.props.route.params;
         return (    
             <View style={app.pagina}>
-                <Header metodo={this.props.navigation} />
                 <View style={app.conteine}>
                     <View style={pagAluno.margin}>
                         <View style={pagAluno.campos}>
