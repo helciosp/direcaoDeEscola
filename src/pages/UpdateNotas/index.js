@@ -26,7 +26,8 @@ export default class PagNota extends Component {
             portuguesLiteratura: '',
             quimica: '',
             sociologia: '',
-            error: '',
+            mensagem: '',
+            c: 1
         };
     }
 
@@ -44,10 +45,9 @@ export default class PagNota extends Component {
         sociologia,
     ) {
         const { idNotas } = this.props.route.params;
-        if (idNotas == "NÃO SELECIONADO") {
-            this.setState({ error: 'Error! Selecione uma nota na lista.' })
-        }
-        else {
+        if (artes.trim() && biologia.trim() && educacaoFisica.trim() && fisica.trim() && geografia.trim() && historia.trim() && ingles.trim() && matematica.trim()
+            && portuguesLiteratura.trim() && quimica.trim() && sociologia.trim()) {
+            this.setState({ mensagem: 'Notas modificadas', c: 0 })
             const db = new DataBase();
             const notas = new UpNotas(
                 artes,
@@ -64,7 +64,9 @@ export default class PagNota extends Component {
             );
 
             db.atualizarNotas(idNotas, notas);
-            DevSettings.reload();
+        }
+        else {
+            this.setState({mensagem: 'Todos os campos são obrigatórios', c: 1})
         }
 
     }
@@ -205,7 +207,7 @@ export default class PagNota extends Component {
                                     </Text>
                                 </View>
                             </TouchableNativeFeedback>
-                            <Text style={app.error}>{this.state.error}</Text>
+                            <Text style={(this.state.c) ? app.error : app.sucesso}>{this.state.mensagem}</Text>
                         </View>
                     </View>
                 </View>

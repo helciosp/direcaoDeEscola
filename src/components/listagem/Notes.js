@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
-import { View, Text, DevSettings, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import Database from '../../my_db/DataBase.js'
-import { list } from '../../styles/index.js'
+import { list, app } from '../../styles/index.js'
 
 const db = new Database();
 
 export default class Students extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            c: 1
+        }
+    }
     delete(idNotas) {
-        db.deletarNotas(idNotas)
-        DevSettings.reload();
+        db.deletarNotas(idNotas);
+        this.setState({c: 0})
     }
     render() {
         if (this.props.idNotas % 2 == 0) {
             return (
 
-                <View style={list.lista2}>
+                <View style={(this.state.c) ? list.lista2 : app.deletado}>
                     <View style={list.centerPar}>
                         <View>
                             <Text>Id Nota: {this.props.idNotas}</Text> 
@@ -51,7 +57,7 @@ export default class Students extends Component {
         else {
             return (
 
-                <View style={list.lista2}>
+                <View style={(this.state.c) ? list.lista2 : app.deletado}>
                     <View style={list.center}>
                         <View>
                             <Text>Id Nota: {this.props.idNotas}</Text> 

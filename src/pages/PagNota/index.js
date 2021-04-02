@@ -4,7 +4,6 @@ import {
     Text,
     TextInput,
     TouchableNativeFeedback,
-    DevSettings,
 } from 'react-native';
 import { pagAluno, app } from '../../styles/index.js';
 import DataBase from '../../my_db/DataBase.js';
@@ -26,7 +25,8 @@ export default class PagNota extends Component {
             portuguesLiteratura: '',
             quimica: '',
             sociologia: '',
-            error: '',
+            mensagem: '',
+            c: 1
         };
     }
 
@@ -44,10 +44,9 @@ export default class PagNota extends Component {
         sociologia,
     ) {
         const { idAluno, nomeAluno } = this.props.route.params;
-        if (idAluno == "NÃO SELECIONADO") {
-            this.setState({ error: 'Error! Selecione um aluno na lista.' })
-        }
-        else {
+        if (artes.trim() && biologia.trim() && educacaoFisica.trim() && fisica.trim() && geografia.trim() && historia.trim() && ingles.trim() && matematica.trim()
+            && portuguesLiteratura.trim() && quimica.trim() && sociologia.trim()) {
+            this.setState({ mensagem: 'Notas adicionadas', c: 0 })
             const notas = new Notas(
                 nomeAluno,
                 artes,
@@ -65,7 +64,9 @@ export default class PagNota extends Component {
             );
             const db = new DataBase();
             db.adicionarNota(notas);
-            DevSettings.reload();
+        }
+        else {
+            this.setState({mensagem: 'Todos os campos são obrigatórios', c: 1})  
         }
 
     }
@@ -205,7 +206,7 @@ export default class PagNota extends Component {
                                     </Text>
                                 </View>
                             </TouchableNativeFeedback>
-                            <Text style={app.error}>{this.state.error}</Text>
+                            <Text style={(this.state.c) ? app.error : app.sucesso}>{this.state.mensagem}</Text>
                         </View>
                     </View>
                 </View>

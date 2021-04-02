@@ -12,8 +12,12 @@ export default class ListAluno extends Component {
         this.state = {
             notes: [],
         }
-        this.notes = []
-        this.listarNotas()
+    }
+
+    componentDidMount(){   
+        this.props.navigation.addListener('focus', () => {
+            this.listarNotas()
+        });
     }
 
     listarNotas() {

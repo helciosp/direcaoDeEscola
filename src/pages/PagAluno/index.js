@@ -10,14 +10,23 @@ export default class PagAluno extends Component {
     super(props);
     this.state = {
       nomeAluno: '',
-      turma: ''
+      turma: '',
+      mensagem: '',
+      c: 1
     };
   }
 
   cadastrar(nomeAluno, turma) {
     const escola = new Aluno(nomeAluno, turma);
-    db.adicionarAluno(escola);
-    DevSettings.reload();
+    
+    if(nomeAluno.trim() && turma.trim()) {
+      db.adicionarAluno(escola);
+      this.setState({mensagem: 'Cadastro feito com susesso', c: 0})
+    } 
+    else {
+      this.setState({mensagem: 'Todos os campos são obrigatórios', c: 1})
+    }
+    
   }
   render() {
     return (
@@ -57,6 +66,7 @@ export default class PagAluno extends Component {
                 </Text>
               </View>
             </TouchableNativeFeedback>
+            <Text style={(this.state.c) ? app.error : app.sucesso}>{this.state.mensagem}</Text>
           </View>
         </View>
       </View>

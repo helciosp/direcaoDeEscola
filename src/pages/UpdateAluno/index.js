@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableNativeFeedback, DevSettings } from 'react-native';
+import { View, Text, TextInput, TouchableNativeFeedback } from 'react-native';
 import { pagAluno, app } from '../../styles/index.js';
 import DataBase from '../../my_db/DataBase.js';
 import Aluno from '../../model/Aluno.js';
@@ -11,7 +11,8 @@ export default class PagNota extends Component {
             idAluno: '',
             nomeAluno: '',
             turma: '',
-            error: ''
+            mensagem: '',
+            c: 1
         };
     }
 
@@ -19,19 +20,19 @@ export default class PagNota extends Component {
         const prod = new Aluno(nomeAluno, turma);
         const db = new DataBase();
         const { idAluno } = this.props.route.params;
-        if(idAluno == "NÃO SELECIONADO"){
-            this.setState({error: 'Error! Selecione um aluno na lista.'})
+        
+        if(nomeAluno.trim() && turma.trim()) {
+            db.atualizar(idAluno, prod);
+            this.setState({ mensagem: `Alteração feita com sucesso.`, c: 0});
         }
-        else{
-           this.setState({error: ''})
-           db.atualizar(idAluno, prod);
-           DevSettings.reload(); 
+        else {
+            this.setState({mensagem: "Todos os compas são obrigatórios!", c: 1})
         }
     }
-    
+
     render() {
         const { idAluno } = this.props.route.params;
-        return (    
+        return (
             <View style={app.pagina}>
                 <View style={app.conteine}>
                     <View style={pagAluno.margin}>
@@ -69,7 +70,8 @@ export default class PagNota extends Component {
                                 </Text>
                             </View>
                         </TouchableNativeFeedback>
-                        <Text style={app.error}>{this.state.error}</Text>
+
+                        <Text style={(this.state.c) ? app.error : app.sucesso}>{this.state.mensagem}</Text>
                     </View>
                 </View>
             </View>

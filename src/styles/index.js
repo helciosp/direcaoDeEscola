@@ -15,11 +15,19 @@ const app = StyleSheet.create({
   conteine: {
     flex: 7
   },
+  sucesso: {
+    textAlign: "center",
+    fontSize: 14,
+    color: "green",
+  },
   error: {
-    textAlign: 'center',
-    color: 'red',
-    fontSize: 16
-  }
+    textAlign: "center",
+    fontSize: 14,
+    color: "red",
+  },
+  deletado: {
+    display: "none"
+  },
 });
 const header = StyleSheet.create({
   preenchimento: {
@@ -86,7 +94,7 @@ const list = StyleSheet.create({
   },
   lista2: {
     width: wp('100%'),
-    height: hp('45%'),
+    height: hp('55%'),
   },
   center: {
     margin: 20,

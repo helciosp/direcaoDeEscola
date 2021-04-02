@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
 import Students from '../../components/listagem/Students.js'
 import Database from '../../my_db/DataBase.js';
-import { app, students } from '../../styles/index.js'
-
+import { app } from '../../styles/index.js';
 const db = new Database();
 
 export default class ListAluno extends Component {
@@ -12,8 +11,11 @@ export default class ListAluno extends Component {
         this.state = {
             students: [],
         }
-        this.students = []
-        this.listar()
+    }
+    componentDidMount(){   
+        this.props.navigation.addListener('focus', () => {
+            this.listar()
+        });
     }
 
     listar() {
