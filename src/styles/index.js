@@ -1,19 +1,13 @@
 import { StyleSheet, Dimensions } from "react-native";
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-  listenOrientationChange as loc,
-  removeOrientationListener as rol
-} from 'react-native-responsive-screen';
+  heightPercentageToDP as hp, } from 'react-native-responsive-screen';
 
 var width = Dimensions.get("window").width;
 
 const app = StyleSheet.create({
   pagina: {
     flex: 1,
-  },
-  conteine: {
-    flex: 7
   },
   sucesso: {
     textAlign: "center",
@@ -28,91 +22,46 @@ const app = StyleSheet.create({
   deletado: {
     display: "none"
   },
-});
-const header = StyleSheet.create({
-  preenchimento: {
-    backgroundColor: "red",
-    justifyContent: "center",
-    flex: 1.5
+  list: {
+    flex: 6,
   },
-  conteine: {
-    margin: 25,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  title: {
-    color: "white",
-    fontSize: 24,
-  },
-  img: {
-    backgroundColor: 'white',
-  
-  }
-});
-const bts = StyleSheet.create({
-  conteine: {
+  mensagens: {
     flex: 4,
-    justifyContent: "center",
-  },
-  margin: {
-    margin: 20,
-    backgroundColor: "#fff3e6",
-    flex: 1,
-    borderRadius: 3
-  },
-});
-const mensagens = StyleSheet.create({
-  conteine: {
-    flex: 7,
     justifyContent: 'center',
     alignItems: 'center'
-  },
+  }
+});
+const mensagens = StyleSheet.create({
   frase: {
-    textAlign: 'center',
     fontSize: 16
   },
   autor: {
-    textAlign: 'right',
     fontStyle: 'italic',
     fontSize: 12
-  },
-  margin: {
-    margin: 20
-  },
-});
-const footer = StyleSheet.create({
-  conteine: {
-    width: width,
-    height: 50,
-    backgroundColor: "#c1a1d3",
   },
 });
 const list = StyleSheet.create({
   lista: {
-    width: wp('100%'),
-    height: hp('20%'),
+    marginHorizontal: wp('10%'),  
+    marginVertical: hp('2.5%'),
   },
   lista2: {
-    width: wp('100%'),
-    height: hp('55%'),
+    marginHorizontal: wp('10%'),  
+    marginVertical: hp('2.5%'),
   },
   center: {
-    margin: 20,
     backgroundColor: '#999999',
-    padding: 10,
-    borderRadius: 20,
+    borderRadius: 10,
     flexDirection: 'row',
-    justifyContent: 'flex-start'
+    justifyContent: 'space-between',
+    padding: 10
   },
   centerPar: {
-    margin: 20,
     backgroundColor: '#adadad',
-    padding: 10,
-    borderRadius: 20,
-    flexDirection: 'row'
-  },
-  botao: {
-    marginHorizontal: 20,
+    borderRadius: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 10
   },
   botaoText: {
     fontSize: 14,
@@ -151,4 +100,4 @@ const pagAluno = StyleSheet.create({
   
 })
 
-export { app, header, bts, footer, mensagens, list, pagAluno };
+export { app, mensagens, list, pagAluno };

@@ -1,0 +1,5 @@
+{
+    "editor.cursorBlinking": "phase",
+    "editor.cursorStyle": "line-thin",
+    "files.autoSave": "onWindowChange"
+}

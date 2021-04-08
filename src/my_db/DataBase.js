@@ -9,7 +9,6 @@ const database_display_name = 'db_direcaoDeEscola';
 const database_size = 200000;
 
 export default class Database {
-    //Conectar com o banco de dados
     conectar() {
         let db;
         return new Promise((resolve) => {
@@ -93,8 +92,6 @@ export default class Database {
                 });
         });
     }
-
-    // Fechar conexão com o banco de dados
     desconectar(db) {
         if (db) {
             console.log('Fechando Banco de Dados');
@@ -114,7 +111,6 @@ export default class Database {
             this.conectar()
                 .then((db) => {
                     db.transaction((tx) => {
-                        //Query SQL para inserir um novo produto
                         tx.executeSql('INSERT INTO aluno VALUES (?, ?, ?)', [
                             escola.idAluno,
                             escola.nomeAluno,
@@ -140,7 +136,6 @@ export default class Database {
             this.conectar()
                 .then((db) => {
                     db.transaction((tx) => {
-                        //Query SQL para inserir um novo produto
                         tx.executeSql('INSERT INTO notas VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
                             notas.idNotas,
                             notas.nomeAluno,
@@ -179,7 +174,6 @@ export default class Database {
             this.conectar()
                 .then((db) => {
                     db.transaction((tx) => {
-                        //Query SQL para listar os dados da tabela
                         tx.executeSql('SELECT * FROM aluno', []).then(
                             ([tx, results]) => {
                                 var len = results.rows.length;
@@ -266,7 +260,6 @@ export default class Database {
                 });
         });
     }
-    // Editar Produto
     atualizar(idAluno, prod) {
         return new Promise((resolve) => {
             this.conectar()

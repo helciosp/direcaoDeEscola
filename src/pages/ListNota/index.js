@@ -28,13 +28,11 @@ export default class ListAluno extends Component {
     render() {
         return (
             <View style={app.pagina}>            
-                <View style={app.conteine}>
-                    <FlatList
-                        data={this.state.notes}
-                        keyExtractor={(item, index) => item.idNotas + ''}
-                        renderItem={({ item }) => <Notes {...item} metodo={this.props.navigation}/>}
-                    />
-                </View>
+                <FlatList
+                    data={this.state.notes}
+                    keyExtractor={(item, index) => item.idNotas + ''}
+                    renderItem={({ item }) => <Notes {...item} metodo={this.props.navigation}/>}
+                />
             </View>
         )
     }
