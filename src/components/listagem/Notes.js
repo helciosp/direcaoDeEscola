@@ -36,6 +36,7 @@ export default class Students extends Component {
                         <Text>Português/Literatura: {this.props.portuguesLiteratura}</Text>
                         <Text>Química: {this.props.quimica}</Text>
                         <Text>Sociologia: {this.props.sociologia}</Text>
+                        <Text>Bimestre: {this.props.bimestre}</Text>
                         <Text>Id Aluno: {this.props.idAluno}</Text>
                     </View>
                     <View style={list.botaoView}>

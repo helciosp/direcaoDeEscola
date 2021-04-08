@@ -13,6 +13,7 @@ export default class Nota {
         quimica,
         sociologia,
         idAluno,
+        bimestre
     ) {
         this.nomeAluno = nomeAluno;
         this.artes = artes;
@@ -27,5 +28,6 @@ export default class Nota {
         this.quimica = quimica;
         this.sociologia = sociologia;
         this.idAluno = idAluno;
+        this.bimestre = bimestre;
     }
 }

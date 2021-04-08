@@ -72,7 +72,7 @@ export default class Database {
                                     );
 
                                     db.transaction((tx) => {
-                                        tx.executeSql('CREATE TABLE IF NOT EXISTS notas (idNotas INTEGER PRIMARY KEY AUTOINCREMENT,nomeAluno VARCHAR(30), artes VARCHAR(3), biologia VARCHAR(3), educacaoFisica VARCHAR(3), fisica VARCHAR(3), geografia VARCHAR(3), historia VARCHAR(3), ingles VARCHAR(3), matematica VARCHAR(3), portuguesLiteratura VARCHAR(3), quimica VARCHAR(3), sociologia VARCHAR(3), idAluno INTEGER)'); //FOREIGN KEY (idAluno) REFERENCES aluno(idAluno)
+                                        tx.executeSql('CREATE TABLE IF NOT EXISTS notas (idNotas INTEGER PRIMARY KEY AUTOINCREMENT,nomeAluno VARCHAR(30), artes VARCHAR(3), biologia VARCHAR(3), educacaoFisica VARCHAR(3), fisica VARCHAR(3), geografia VARCHAR(3), historia VARCHAR(3), ingles VARCHAR(3), matematica VARCHAR(3), portuguesLiteratura VARCHAR(3), quimica VARCHAR(3), sociologia VARCHAR(3), idAluno INTEGER, bimestre CHAR(1))'); //FOREIGN KEY (idAluno) REFERENCES aluno(idAluno)
                                     })
                                         .then(() => {
                                             console.log('Tabela criada com Sucesso');
@@ -136,7 +136,7 @@ export default class Database {
             this.conectar()
                 .then((db) => {
                     db.transaction((tx) => {
-                        tx.executeSql('INSERT INTO notas VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+                        tx.executeSql('INSERT INTO notas VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
                             notas.idNotas,
                             notas.nomeAluno,
                             notas.artes,
@@ -151,6 +151,7 @@ export default class Database {
                             notas.quimica,
                             notas.sociologia,
                             notas.idAluno,
+                            notas.bimestre,
                         ]).then(([tx, results]) => {
                             resolve(results);
                         });
@@ -225,6 +226,7 @@ export default class Database {
                                         quimica,
                                         sociologia,
                                         idAluno,
+                                        bimestre
                                     } = row;
                                     notas.push({
                                         idNotas,
@@ -241,6 +243,7 @@ export default class Database {
                                         quimica,
                                         sociologia,
                                         idAluno,
+                                        bimestre
                                     });
                                 }
                                 console.log(notas);
@@ -272,6 +275,12 @@ export default class Database {
                         ).then(([tx, results]) => {
                             resolve(results);
                         });
+                        tx.executeSql(
+                            'UPDATE notas SET nomeAluno = ? WHERE idAluno = ?',
+                            [prod.nomeAluno, idAluno],
+                        ).then(([tx, results]) => {
+                            resolve(results);
+                        });
                     })
                         .then((result) => {
                             this.desconectar(db);
@@ -293,6 +302,12 @@ export default class Database {
                 .then((db) => {
                     db.transaction((tx) => {
                         tx.executeSql('DELETE FROM aluno WHERE idAluno = ?', [idAluno]).then(
+                            ([tx, results]) => {
+                                console.log(results);
+                                resolve(results);
+                            },
+                        );
+                        tx.executeSql('DELETE FROM notas WHERE idAluno = ?', [idAluno]).then(
                             ([tx, results]) => {
                                 console.log(results);
                                 resolve(results);
@@ -342,7 +357,7 @@ export default class Database {
                     db.transaction((tx) => {
                         //Query SQL para atualizar um dado no banco
                         tx.executeSql(
-                            'UPDATE notas SET artes = ?, biologia = ?, educacaoFisica = ?, fisica = ?, geografia = ?, historia = ?, ingles = ?, matematica = ?, portuguesLiteratura = ?, quimica = ?, sociologia = ? WHERE idNotas = ?',
+                            'UPDATE notas SET artes = ?, biologia = ?, educacaoFisica = ?, fisica = ?, geografia = ?, historia = ?, ingles = ?, matematica = ?, portuguesLiteratura = ?, quimica = ?, sociologia = ?, bimestre = ? WHERE idNotas = ?',
                             [
                                 notas.artes,
                                 notas.biologia,
@@ -355,7 +370,9 @@ export default class Database {
                                 notas.portuguesLiteratura,
                                 notas.quimica,
                                 notas.sociologia,
-                                idNotas,],
+                                notas.bimestre,
+                                idNotas,
+                            ],
                         ).then(([tx, results]) => {
                             resolve(results);
                         });

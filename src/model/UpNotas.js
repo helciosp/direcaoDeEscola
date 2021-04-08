@@ -11,6 +11,7 @@ export default class UpNota {
         portuguesLiteratura,
         quimica,
         sociologia,
+        bimestre
     ) {
         this.artes = artes;
         this.biologia = biologia;
@@ -23,5 +24,6 @@ export default class UpNota {
         this.portuguesLiteratura = portuguesLiteratura;
         this.quimica = quimica;
         this.sociologia = sociologia;
+        this.bimestre = bimestre;
     }
 }

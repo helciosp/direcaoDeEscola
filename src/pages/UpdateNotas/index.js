@@ -26,6 +26,7 @@ export default class PagNota extends Component {
             portuguesLiteratura: '',
             quimica: '',
             sociologia: '',
+            bimestre: '',
             mensagem: '',
             c: 1
         };
@@ -43,30 +44,37 @@ export default class PagNota extends Component {
         portuguesLiteratura,
         quimica,
         sociologia,
+        bimestre
     ) {
         const { idNotas } = this.props.route.params;
-        if (artes.trim() && biologia.trim() && educacaoFisica.trim() && fisica.trim() && geografia.trim() && historia.trim() && ingles.trim() && matematica.trim()
-            && portuguesLiteratura.trim() && quimica.trim() && sociologia.trim()) {
-            this.setState({ mensagem: 'Notas modificadas', c: 0 })
-            const db = new DataBase();
-            const notas = new UpNotas(
-                artes,
-                biologia,
-                educacaoFisica,
-                fisica,
-                geografia,
-                historia,
-                ingles,
-                matematica,
-                portuguesLiteratura,
-                quimica,
-                sociologia,
-            );
+        if (artes.trim() || biologia.trim() || educacaoFisica.trim() || fisica.trim() || geografia.trim() || historia.trim() || ingles.trim() || matematica.trim()
+            || portuguesLiteratura.trim() || quimica.trim() || sociologia.trim()) {
+            if (bimestre.trim()) {
+                this.setState({ mensagem: 'Notas modificadas', c: 0 })
+                const db = new DataBase();
+                const notas = new UpNotas(
+                    artes,
+                    biologia,
+                    educacaoFisica,
+                    fisica,
+                    geografia,
+                    historia,
+                    ingles,
+                    matematica,
+                    portuguesLiteratura,
+                    quimica,
+                    sociologia,
+                    bimestre,
+                );
+                db.atualizarNotas(idNotas, notas);
+            }
+            else {
+                this.setState({ mensagem: 'O campo bimestre é obrigátorio!', c: 1 })
+            }
 
-            db.atualizarNotas(idNotas, notas);
         }
         else {
-            this.setState({mensagem: 'Todos os campos são obrigatórios', c: 1})
+            this.setState({ mensagem: 'Alguma coisa aqui deve ser preenchida!', c: 1 })
         }
 
     }
@@ -178,6 +186,15 @@ export default class PagNota extends Component {
                                     onChangeText={(soc) => this.setState({ sociologia: soc })}
                                 />
                             </View>
+                            <View style={pagAluno.campos}>
+                                <Text>Bimestre:</Text>
+                                <TextInput
+                                    keyboardType="numeric"
+                                    placeholder="Informe o bimestre"
+                                    maxLength={1}
+                                    onChangeText={(b) => this.setState({ bimestre: b })}
+                                />
+                            </View>
 
                             <TouchableNativeFeedback
                                 onPress={() => {
@@ -193,6 +210,7 @@ export default class PagNota extends Component {
                                         this.state.portuguesLiteratura,
                                         this.state.quimica,
                                         this.state.sociologia,
+                                        this.state.bimestre
                                     );
                                 }}
                                 background={
