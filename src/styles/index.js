@@ -28,12 +28,14 @@ const app = StyleSheet.create({
   mensagens: {
     flex: 4,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    margin: 10,
   }
 });
 const mensagens = StyleSheet.create({
   frase: {
-    fontSize: 16
+    fontSize: 16,
+    textAlign: 'center'
   },
   autor: {
     fontStyle: 'italic',

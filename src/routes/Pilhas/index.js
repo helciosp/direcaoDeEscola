@@ -5,8 +5,9 @@ import PagNota from '../../pages/PagNota';
 import UpdateAluno from '../../pages/UpdateAluno';
 import UpdateNotas from '../../pages/UpdateNotas';
 import Gaveta from '../Gaveta';
-import InconDrawer from '../../components/InconDrawer'
-import {header} from '../../options/index'
+import InconDrawer from '../../components/InconDrawer';
+import Icon from 'react-native-vector-icons/Octicons'
+import { header } from '../../options/index'
 
 const Stack = createStackNavigator();
 
@@ -20,7 +21,10 @@ export default class Pilhas extends Component {
                             title: 'Direção de Escola',
                             headerStyle: { backgroundColor: 'red' },
                             headerTitleStyle: { color: 'white' },
-                            headerLeft: () => <InconDrawer navigationDrawer={navigation} />
+                            headerLeft: () => 
+                            <Icon style={{ marginLeft: 10 }} name='three-bars' color='white'
+                            size={30} onPress={() => navigation.openDrawer()} />,
+                                 
                         })}
                     />
                     <Stack.Screen name='PagNota' component={PagNota} options={header.cadasNs} />

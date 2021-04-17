@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import Database from '../../my_db/DataBase.js'
+import TbNotas from '../../my_db/TbNotas'
 import { list, app } from '../../styles/index.js'
 
-const db = new Database();
+const db = new TbNotas();
 
 export default class Students extends Component {
     constructor(props) {
@@ -25,17 +25,8 @@ export default class Students extends Component {
                     <View>
                         <Text>Id Nota: {this.props.idNotas}</Text>
                         <Text>Estudante: {this.props.nomeAluno}</Text>
-                        <Text>Artes: {this.props.artes}</Text>
-                        <Text>Biologia: {this.props.biologia}</Text>
-                        <Text>Edução Física: {this.props.educacaoFisica}</Text>
-                        <Text>Física: {this.props.fisica}</Text>
-                        <Text>Geografia: {this.props.geografia}</Text>
-                        <Text>História: {this.props.historia}</Text>
-                        <Text>Inglês: {this.props.ingles}</Text>
-                        <Text>Matemática: {this.props.matematica}</Text>
-                        <Text>Português/Literatura: {this.props.portuguesLiteratura}</Text>
-                        <Text>Química: {this.props.quimica}</Text>
-                        <Text>Sociologia: {this.props.sociologia}</Text>
+                        <Text>Disciplina: {this.props.disciplina}</Text>
+                        <Text>Nota: {this.props.nota}</Text>
                         <Text>Bimestre: {this.props.bimestre}</Text>
                         <Text>Id Aluno: {this.props.idAluno}</Text>
                     </View>

@@ -1,77 +1,30 @@
 import React, { Component } from 'react';
-import {
-    View,
-    Text,
-    TextInput,
-    TouchableNativeFeedback,
-} from 'react-native';
+import { View, Text, TextInput, TouchableNativeFeedback, ScrollView } from 'react-native';
 import { pagAluno, app } from '../../styles/index.js';
-import DataBase from '../../my_db/DataBase.js';
+import TbNotas from '../../my_db/TbNotas';
 import Notas from '../../model/Notas.js';
-import { ScrollView } from 'react-native-gesture-handler';
+
 
 export default class PagNota extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            artes: '',
-            biologia: '',
-            educacaoFisica: '',
-            fisica: '',
-            geografia: '',
-            historia: '',
-            ingles: '',
-            matematica: '',
-            portuguesLiteratura: '',
-            quimica: '',
-            sociologia: '',
+            nota: '',
+            disciplina: 'Matemática',
             bimestre: '',
             mensagem: '',
             c: 1
         };
     }
 
-    cadastrarNota(
-        artes,
-        biologia,
-        educacaoFisica,
-        fisica,
-        geografia,
-        historia,
-        ingles,
-        matematica,
-        portuguesLiteratura,
-        quimica,
-        sociologia,
-        bimestre,
-    ) {
+    cadastrarNota(disciplina, nota, bimestre) {
         const { idAluno, nomeAluno } = this.props.route.params;
-        if (artes.trim() || biologia.trim() || educacaoFisica.trim() || fisica.trim() || geografia.trim() || historia.trim() || ingles.trim() || matematica.trim()
-            || portuguesLiteratura.trim() || quimica.trim() || sociologia.trim()) {
-            if (bimestre.trim()) {
-                this.setState({ mensagem: 'Notas adicionadas', c: 0 })
-                const notas = new Notas(
-                    nomeAluno,
-                    artes,
-                    biologia,
-                    educacaoFisica,
-                    fisica,
-                    geografia,
-                    historia,
-                    ingles,
-                    matematica,
-                    portuguesLiteratura,
-                    quimica,
-                    sociologia,
-                    bimestre,
-                    idAluno,
-                );
-                const db = new DataBase();
-                db.adicionarNota(notas);
-            }
-            else {
-                this.setState({ mensagem: 'O campo bimestre é obrigátorio!', c: 1 })
-            }
+        if (nota.trim()) {
+
+            this.setState({ mensagem: 'Notas adicionadas', c: 0 })
+            const notas = new Notas(nomeAluno, disciplina, nota, bimestre, idAluno);
+            const db = new TbNotas();
+            db.adicionarNota(notas);
         }
         else {
             this.setState({ mensagem: 'Alguma coisa aqui deve ser preenchida!', c: 1 })
@@ -86,104 +39,15 @@ export default class PagNota extends Component {
                     <View style={app.conteine}>
                         <View style={pagAluno.margin}>
                             <View style={pagAluno.campos}>
-                                <Text>Artes:</Text>
-                                <TextInput
-                                    keyboardType="numeric"
-                                    placeholder="Informe a nota de Artes"
-                                    maxLength={3}
-                                    onChangeText={(art) => this.setState({ artes: art })}
-                                />
+                               
                             </View>
                             <View style={pagAluno.campos}>
-                                <Text>Biologia:</Text>
+                                <Text>Nota:</Text>
                                 <TextInput
                                     keyboardType="numeric"
-                                    placeholder="Informe a nota de Biologia"
+                                    placeholder="Informe o bimestre"
                                     maxLength={3}
-                                    onChangeText={(bio) => this.setState({ biologia: bio })}
-                                />
-                            </View>
-                            <View style={pagAluno.campos}>
-                                <Text>Educação Física:</Text>
-                                <TextInput
-                                    keyboardType="numeric"
-                                    placeholder="Informe a nota de Edacação Física"
-                                    maxLength={3}
-                                    onChangeText={(edu) => this.setState({ educacaoFisica: edu })}
-                                />
-                            </View>
-                            <View style={pagAluno.campos}>
-                                <Text>Física:</Text>
-                                <TextInput
-                                    keyboardType="numeric"
-                                    placeholder="Informe a nota de Física"
-                                    maxLength={3}
-                                    onChangeText={(fis) => this.setState({ fisica: fis })}
-                                />
-                            </View>
-                            <View style={pagAluno.campos}>
-                                <Text>Geografia:</Text>
-                                <TextInput
-                                    keyboardType="numeric"
-                                    placeholder="Informe a nota de Geografia"
-                                    maxLength={3}
-                                    onChangeText={(geo) => this.setState({ geografia: geo })}
-                                />
-                            </View>
-                            <View style={pagAluno.campos}>
-                                <Text>História:</Text>
-                                <TextInput
-                                    keyboardType="numeric"
-                                    placeholder="Informe a nota de História"
-                                    maxLength={3}
-                                    onChangeText={(his) => this.setState({ historia: his })}
-                                />
-                            </View>
-                            <View style={pagAluno.campos}>
-                                <Text>Inglês:</Text>
-                                <TextInput
-                                    keyboardType="numeric"
-                                    placeholder="Informe a nota de Inglês"
-                                    maxLength={3}
-                                    onChangeText={(ing) => this.setState({ ingles: ing })}
-                                />
-                            </View>
-                            <View style={pagAluno.campos}>
-                                <Text>Matemática:</Text>
-                                <TextInput
-                                    keyboardType="numeric"
-                                    placeholder="Informe a nota de Matemática"
-                                    maxLength={3}
-                                    onChangeText={(mat) => this.setState({ matematica: mat })}
-                                />
-                            </View>
-                            <View style={pagAluno.campos}>
-                                <Text>Portugues/Literatura:</Text>
-                                <TextInput
-                                    keyboardType="numeric"
-                                    placeholder="Informe a nota de Portugues/Literatura"
-                                    maxLength={3}
-                                    onChangeText={(pot) =>
-                                        this.setState({ portuguesLiteratura: pot })
-                                    }
-                                />
-                            </View>
-                            <View style={pagAluno.campos}>
-                                <Text>Química:</Text>
-                                <TextInput
-                                    keyboardType="numeric"
-                                    placeholder="Informe a nota de Química"
-                                    maxLength={3}
-                                    onChangeText={(qui) => this.setState({ quimica: qui })}
-                                />
-                            </View>
-                            <View style={pagAluno.campos}>
-                                <Text>Sociologia:</Text>
-                                <TextInput
-                                    keyboardType="numeric"
-                                    placeholder="Informe a nota de Sociologia"
-                                    maxLength={3}
-                                    onChangeText={(soc) => this.setState({ sociologia: soc })}
+                                    onChangeText={(n) => this.setState({ nota: n })}
                                 />
                             </View>
                             <View style={pagAluno.campos}>
@@ -197,20 +61,7 @@ export default class PagNota extends Component {
                             </View>
                             <TouchableNativeFeedback
                                 onPress={() => {
-                                    this.cadastrarNota(
-                                        this.state.artes,
-                                        this.state.biologia,
-                                        this.state.educacaoFisica,
-                                        this.state.fisica,
-                                        this.state.geografia,
-                                        this.state.historia,
-                                        this.state.ingles,
-                                        this.state.matematica,
-                                        this.state.portuguesLiteratura,
-                                        this.state.quimica,
-                                        this.state.sociologia,
-                                        this.state.bimestre,
-                                    );
+                                    this.cadastrarNota(this.state.disciplina, this.state.nota, this.state.bimestre);
                                 }}
                                 background={
                                     Platform.OS === 'android'

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput, DevSettings, TouchableNativeFeedback} from 'react-native';
-import Database from '../../my_db/DataBase';
+import TbAluno from '../../my_db/TbAluno';
 import Aluno from '../../model/Aluno.js';
 import {app, pagAluno} from '../../styles/index.js';
-const db = new Database();
+const db = new TbAluno();
 
 export default class PagAluno extends Component {
   constructor(props) {

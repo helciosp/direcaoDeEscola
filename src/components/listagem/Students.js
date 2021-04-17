@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import Database from '../../my_db/DataBase.js'
+import TbAluno from '../../my_db/TbAluno'
 import { list, app } from '../../styles/index.js'
 
-const db = new Database();
+const db = new TbAluno();
 
 export default class Students extends Component {
     constructor(props) {

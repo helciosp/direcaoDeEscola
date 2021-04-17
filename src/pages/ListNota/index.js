@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList } from 'react-native'
 import Notes from '../../components/listagem/Notes.js'
-import Database from '../../my_db/DataBase.js';
+import TbNotas from '../../my_db/TbNotas';
 import { app, students } from '../../styles/index.js'
 
-const db = new Database();
+const db = new TbNotas();
 
 export default class ListAluno extends Component {
     constructor(props) {

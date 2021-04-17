@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableNativeFeedback } from 'react-native';
 import { pagAluno, app } from '../../styles/index.js';
-import DataBase from '../../my_db/DataBase.js';
+import TbAluno from '../../my_db/TbAluno';
 import Aluno from '../../model/Aluno.js';
 
 export default class PagNota extends Component {
@@ -18,7 +18,7 @@ export default class PagNota extends Component {
 
     Update(nomeAluno, turma) {
         const prod = new Aluno(nomeAluno, turma);
-        const db = new DataBase();
+        const db = new TbAluno();
         const { idAluno } = this.props.route.params;
         
         if(nomeAluno.trim() && turma.trim()) {

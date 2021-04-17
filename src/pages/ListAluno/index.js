@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { View, FlatList, Text } from 'react-native'
 import Students from '../../components/listagem/Students.js'
-import Database from '../../my_db/DataBase.js';
+import TbAluno from '../../my_db/TbAluno';
 import { app, mensagens } from '../../styles/index.js';
-const db = new Database();
+const db = new TbAluno();
 
 export default class ListAluno extends Component {
     constructor(props) {
@@ -53,7 +53,7 @@ export default class ListAluno extends Component {
                 <View style={app.list}>
                     <FlatList
                         data={this.state.students}
-                        keyExtractor={(item, index) => item.idAluno + ''}
+                        keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => <Students {...item} metodo={this.props.navigation} />}
                     />
                 </View>
