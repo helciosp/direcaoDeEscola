@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableNativeFeedback, ScrollView } from 'reac
 import { pagAluno, app } from '../../styles/index.js';
 import TbNotas from '../../my_db/TbNotas';
 import Notas from '../../model/Notas.js';
-
+import { Picker } from '@react-native-picker/picker';
 
 export default class PagNota extends Component {
     constructor(props) {
@@ -38,23 +38,40 @@ export default class PagNota extends Component {
                 <View style={app.pagina}>
                     <View style={app.conteine}>
                         <View style={pagAluno.margin}>
-                            <View style={pagAluno.campos}>
-                               
+                            <View style={pagAluno.select}>
+                                <Picker
+                                    selectedValue={this.state.disciplina}
+                                    onValueChange={(item) => this.setState({ disciplina: item })}>
+                                    <Picker.Item label={'Artes'} value={'Artes'} />
+                                    <Picker.Item label={'Biologia'} value={'Biologia'} />
+                                    <Picker.Item label={'Educação Física'} value={'Educação Física'} />
+                                    <Picker.Item label={'Filosofia'} value={'Filosofia'} />
+                                    <Picker.Item label={'Física'} value={'Física'} />
+                                    <Picker.Item label={'Geografia'} value={'Geografia'} />
+                                    <Picker.Item label={'História'} value={'História'} />
+                                    <Picker.Item label={'Inglês'} value={'Inglês'} />
+                                    <Picker.Item label={'Português/Literatura'} value={'Português/Literatura'} />
+                                    <Picker.Item label={'Matemática'} value={'Matemática'} />
+                                    <Picker.Item label={'Química'} value={'Química'} />
+                                    <Picker.Item label={'Sociologia'} value={'Sociologia'} />
+                                </Picker>
                             </View>
                             <View style={pagAluno.campos}>
                                 <Text>Nota:</Text>
                                 <TextInput
+                                    style={pagAluno.input}
                                     keyboardType="numeric"
-                                    placeholder="Informe o bimestre"
-                                    maxLength={3}
+                                    placeholder="8,72"
+                                    maxLength={5}
                                     onChangeText={(n) => this.setState({ nota: n })}
                                 />
                             </View>
                             <View style={pagAluno.campos}>
                                 <Text>Bimestre:</Text>
                                 <TextInput
+                                    style={pagAluno.input}
                                     keyboardType="numeric"
-                                    placeholder="Informe o bimestre"
+                                    placeholder="4"
                                     maxLength={1}
                                     onChangeText={(b) => this.setState({ bimestre: b })}
                                 />
@@ -70,7 +87,7 @@ export default class PagNota extends Component {
                                 }>
                                 <View style={pagAluno.botao}>
                                     <Text style={pagAluno.botaoText}>
-                                        {"Cadastrar notas de(a) " + nomeAluno + ", id " + idAluno}
+                                        {"Cadastrar notas de(a) " + nomeAluno}
                                         {Platform.OS !== 'android' ? '(Android only)' : ''}
                                     </Text>
                                 </View>

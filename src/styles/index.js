@@ -80,7 +80,6 @@ const list = StyleSheet.create({
     color: 'green',
     textAlign: 'right'
   },
-
 });
 const pagAluno = StyleSheet.create({
   margin: {
@@ -99,6 +98,13 @@ const pagAluno = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5
   },
+  select: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'red',
+  },
+  input: {
+    width: width
+  }
   
 })
 

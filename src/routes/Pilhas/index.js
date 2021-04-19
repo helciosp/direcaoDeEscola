@@ -5,9 +5,9 @@ import PagNota from '../../pages/PagNota';
 import UpdateAluno from '../../pages/UpdateAluno';
 import UpdateNotas from '../../pages/UpdateNotas';
 import Gaveta from '../Gaveta';
-import InconDrawer from '../../components/InconDrawer';
 import Icon from 'react-native-vector-icons/Octicons'
-import { header } from '../../options/index'
+import { header } from '../../options/index';
+import { DrawerActions } from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +23,7 @@ export default class Pilhas extends Component {
                             headerTitleStyle: { color: 'white' },
                             headerLeft: () => 
                             <Icon style={{ marginLeft: 10 }} name='three-bars' color='white'
-                            size={30} onPress={() => navigation.openDrawer()} />,
+                            size={30} onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />,
                                  
                         })}
                     />

@@ -31,7 +31,7 @@ export default class Students extends Component {
                         <Text>Id Aluno: {this.props.idAluno}</Text>
                     </View>
                     <View style={list.botaoView}>
-                        <TouchableOpacity style={list.botao} onPress={() => { this.props.metodo.navigate('UpdateNotas', { idNotas: this.props.idNotas, nomeAluno: this.props.nomeAluno }) }}>
+                        <TouchableOpacity style={list.botao} onPress={() => { this.props.metodo.navigate('UpdateNotas', { idNotas: this.props.idNotas, nomeAluno: this.props.nomeAluno, disciplina: this.props.disciplina }) }}>
                             <View>
                                 <Text style={list.botaoText1}>Modificar</Text>
                             </View>

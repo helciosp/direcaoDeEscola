@@ -20,18 +20,17 @@ export default class PagNota extends Component {
         const prod = new Aluno(nomeAluno, turma);
         const db = new TbAluno();
         const { idAluno } = this.props.route.params;
-        
-        if(nomeAluno.trim() && turma.trim()) {
+
+        if (nomeAluno.trim() && turma.trim()) {
             db.atualizar(idAluno, prod);
-            this.setState({ mensagem: `Alteração feita com sucesso.`, c: 0});
+            this.setState({ mensagem: `Alteração feita com sucesso.`, c: 0 });
         }
         else {
-            this.setState({mensagem: "Todos os compas são obrigatórios!", c: 1})
+            this.setState({ mensagem: "Todos os campos são obrigatórios!", c: 1 })
         }
     }
 
     render() {
-        const { idAluno } = this.props.route.params;
         return (
             <View style={app.pagina}>
                 <View style={app.conteine}>
@@ -39,6 +38,7 @@ export default class PagNota extends Component {
                         <View style={pagAluno.campos}>
                             <Text>Aluno:</Text>
                             <TextInput
+                                style={pagAluno.input}
                                 placeholder="Infome o nome do aluno(a)"
                                 maxLength={30}
                                 onChangeText={(nom) => this.setState({ nomeAluno: nom })}
@@ -47,6 +47,7 @@ export default class PagNota extends Component {
                         <View style={pagAluno.campos}>
                             <Text>Turma:</Text>
                             <TextInput
+                                style={pagAluno.input}
                                 keyboardType="numeric"
                                 placeholder="Informe a turma"
                                 maxLength={10}
@@ -65,7 +66,7 @@ export default class PagNota extends Component {
                             }>
                             <View style={pagAluno.botao}>
                                 <Text style={pagAluno.botaoText}>
-                                    {'Modificar Id: ' + idAluno}{' '}
+                                    {'Modificar'}{' '}
                                     {Platform.OS !== 'android' ? '(Android only)' : ''}
                                 </Text>
                             </View>

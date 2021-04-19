@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, FlatList, Text } from 'react-native'
+import { View, FlatList, Text, TextInput, Button } from 'react-native'
 import Students from '../../components/listagem/Students.js'
 import TbAluno from '../../my_db/TbAluno';
 import { app, mensagens } from '../../styles/index.js';
+
 const db = new TbAluno();
 
 export default class ListAluno extends Component {

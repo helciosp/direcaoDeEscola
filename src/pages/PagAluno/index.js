@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
-import {View, Text, TextInput, DevSettings, TouchableNativeFeedback} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, TextInput, TouchableNativeFeedback } from 'react-native';
 import TbAluno from '../../my_db/TbAluno';
 import Aluno from '../../model/Aluno.js';
-import {app, pagAluno} from '../../styles/index.js';
+import { app, pagAluno } from '../../styles/index.js';
+
 const db = new TbAluno();
 
 export default class PagAluno extends Component {
@@ -18,15 +19,15 @@ export default class PagAluno extends Component {
 
   cadastrar(nomeAluno, turma) {
     const escola = new Aluno(nomeAluno, turma);
-    
-    if(nomeAluno.trim() && turma.trim()) {
+
+    if (nomeAluno.trim() && turma.trim()) {
       db.adicionarAluno(escola);
-      this.setState({mensagem: 'Cadastro feito com susesso', c: 0})
-    } 
-    else {
-      this.setState({mensagem: 'Todos os campos são obrigatórios', c: 1})
+      this.setState({ mensagem: 'Cadastro feito com susesso', c: 0 })
     }
-    
+    else {
+      this.setState({ mensagem: 'Todos os campos são obrigatórios!', c: 1 })
+    }
+
   }
   render() {
     return (
@@ -36,18 +37,20 @@ export default class PagAluno extends Component {
             <View style={pagAluno.campos}>
               <Text>Nome:</Text>
               <TextInput
+                style={pagAluno.input}
                 placeholder="Informe o nome do aluno(a)"
                 maxLength={30}
-                onChangeText={(n) => this.setState({nomeAluno: n})}
+                onChangeText={(n) => this.setState({ nomeAluno: n })}
               />
             </View>
             <View style={pagAluno.campos}>
               <Text>Turma:</Text>
               <TextInput
+                style={pagAluno.input}
                 placeholder="Informe a turma do aluno(a)"
                 keyboardType='numeric'
                 maxLength={10}
-                onChangeText={(tur) => this.setState({turma: tur})}
+                onChangeText={(tur) => this.setState({ turma: tur })}
               />
             </View>
             <TouchableNativeFeedback
