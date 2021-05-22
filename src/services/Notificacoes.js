@@ -13,10 +13,20 @@ class Notificacoes {
             },
         });
     }
+    ChannelManagement = () => {
+        PushNotification.createChannel(
+            {
+              channelId: "1",
+              channelName: "lembrete",
+              playSound: false,
+            },
+        );
+    }
     notificaoInicial = () => {
         PushNotification.localNotification({
+            channelId: "1",
             id: 1,
-            bigText: "Para cadastrar uma nota você precisa cadastrar um aluno e depois ir para lista de alunos e identificar o botão responsável por tal ação!", // (optional)
+            bigText: "Para cadastrar uma nota você precisa cadastrar um aluno, depois vai a lista de alunos e identificar o botão responsável por tal ação!", // (optional)
             color: "red",
             vibration: 300,
             title: "Cadastrar notas",

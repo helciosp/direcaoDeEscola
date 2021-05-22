@@ -10,4 +10,5 @@ import { notificacoes } from "./src/services/Notificacoes"
 AppRegistry.registerComponent(appName, () => App);
 
 notificacoes.configure();
+notificacoes.ChannelManagement();
 notificacoes.notificaoInicial();
