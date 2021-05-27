@@ -26,6 +26,7 @@ class Notificacoes {
         PushNotification.localNotification({
             channelId: "1",
             id: 1,
+            largeIcon: "icon",
             bigText: "Para cadastrar uma nota você precisa cadastrar um aluno, depois vai a lista de alunos e identificar o botão responsável por tal ação!", // (optional)
             color: "red",
             vibration: 300,
