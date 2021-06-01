@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableNativeFeedback } from 'react-native';
+import { Toast, Root } from "native-base";
 import TbAluno from '../../my_db/TbAluno';
 import Aluno from '../../model/Aluno.js';
 import { app, pagAluno } from '../../styles/index.js';
@@ -12,8 +13,6 @@ export default class PagAluno extends Component {
     this.state = {
       nomeAluno: '',
       turma: '',
-      mensagem: '',
-      c: 1
     };
   }
 
@@ -22,57 +21,67 @@ export default class PagAluno extends Component {
 
     if (nomeAluno.trim() && turma.trim()) {
       db.adicionarAluno(escola);
-      this.setState({ mensagem: 'Cadastro feito com susesso', c: 0 })
+      Toast.show({
+        text: 'Cadastro feito com susesso!',
+        buttonText: 'OK',
+        duration: 10000,
+        type: 'success'
+      })
     }
     else {
-      this.setState({ mensagem: 'Todos os campos são obrigatórios!', c: 1 })
+      Toast.show({
+        text: 'Todos os campos são obrigatórios!',
+        buttonText: 'OK',
+        duration: 10000,
+        type: 'danger'
+      })
     }
-
   }
   render() {
     return (
-      <View style={app.pagina}>
-        <View style={app.conteine}>
-          <View style={pagAluno.margin}>
-            <View style={pagAluno.campos}>
-              <Text style={pagAluno.titleInput}>Nome:</Text>
-              <TextInput
-                style={pagAluno.input}
-                placeholder="Informe o nome do aluno(a)"
-                maxLength={30}
-                onChangeText={(n) => this.setState({ nomeAluno: n })}
-              />
-            </View>
-            <View style={pagAluno.campos}>
-              <Text style={pagAluno.titleInput}>Turma:</Text>
-              <TextInput
-                style={pagAluno.input}
-                placeholder="Informe a turma do aluno(a)"
-                keyboardType='numeric'
-                maxLength={10}
-                onChangeText={(tur) => this.setState({ turma: tur })}
-              />
-            </View>
-            <TouchableNativeFeedback
-              onPress={() => {
-                this.cadastrar(this.state.nomeAluno, this.state.turma);
-              }}
-              background={
-                Platform.OS === 'android'
-                  ? TouchableNativeFeedback.SelectableBackground()
-                  : ''
-              }>
-              <View style={pagAluno.botao}>
-                <Text style={pagAluno.botaoText}>
-                  Cadastrar
-                  {Platform.OS !== 'android' ? '(Android only)' : ''}
-                </Text>
+      <Root>
+        <View style={app.pagina}>
+          <View style={app.conteine}>
+            <View style={pagAluno.margin}>
+              <View style={pagAluno.campos}>
+                <Text style={pagAluno.titleInput}>Nome:</Text>
+                <TextInput
+                  style={pagAluno.input}
+                  placeholder="Informe o nome do aluno(a)"
+                  maxLength={30}
+                  onChangeText={(n) => this.setState({ nomeAluno: n })}
+                />
               </View>
-            </TouchableNativeFeedback>
-            <Text style={(this.state.c) ? app.error : app.sucesso}>{this.state.mensagem}</Text>
+              <View style={pagAluno.campos}>
+                <Text style={pagAluno.titleInput}>Turma:</Text>
+                <TextInput
+                  style={pagAluno.input}
+                  placeholder="Informe a turma do aluno(a)"
+                  keyboardType='numeric'
+                  maxLength={10}
+                  onChangeText={(tur) => this.setState({ turma: tur })}
+                />
+              </View>
+              <TouchableNativeFeedback
+                onPress={() => {
+                  this.cadastrar(this.state.nomeAluno, this.state.turma);
+                }}
+                background={
+                  Platform.OS === 'android'
+                    ? TouchableNativeFeedback.SelectableBackground()
+                    : ''
+                }>
+                <View style={pagAluno.botao}>
+                  <Text style={pagAluno.botaoText}>
+                    Cadastrar
+                  {Platform.OS !== 'android' ? '(Android only)' : ''}
+                  </Text>
+                </View>
+              </TouchableNativeFeedback>
+            </View>
           </View>
         </View>
-      </View>
+      </Root>
     );
   }
 }
