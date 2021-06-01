@@ -20,10 +20,10 @@ export default class Students extends Component {
         return (
             <View style={(this.state.c) ? list.lista : app.deletado}>
                 <View style={(this.props.idAluno % 2 == 0) ? list.centerPar : list.center}>
-                    <View >
-                        <Text>Id: {this.props.idAluno}</Text>
-                        <Text>Estudante: {this.props.nomeAluno}</Text>
-                        <Text>Turma: {this.props.turma}</Text>
+                    <View>
+                        <Text style={list.title}>Nº: {this.props.idAluno}</Text>
+                        <Text style={list.title}>Estudante: <Text style={list.valores}>{this.props.nomeAluno}</Text></Text>
+                        <Text style={list.title}>Turma: <Text style={list.valores}>{this.props.turma}</Text></Text>
                     </View>
                     <View style={list.botaoView}>
                         <TouchableOpacity style={list.botao} onPress={() => { this.props.metodo.navigate('PagNota', { idAluno: this.props.idAluno, nomeAluno: this.props.nomeAluno }) }}>

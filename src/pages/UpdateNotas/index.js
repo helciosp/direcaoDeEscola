@@ -38,6 +38,7 @@ export default class PagNota extends Component {
                         <View style={pagAluno.margin}>
                             <View style={pagAluno.select}>
                                 <Picker
+                                    style={pagAluno.picker}
                                     selectedValue={disciplina}
                                     onValueChange={(item) => this.setState({ disciplina: item })}>
                                     <Picker.Item label={'Artes'} value={'Artes'} />
@@ -55,7 +56,7 @@ export default class PagNota extends Component {
                                 </Picker>
                             </View>
                             <View style={pagAluno.campos}>
-                                <Text>Nota:</Text>
+                                <Text style={pagAluno.titleInput}>Nota:</Text>
                                 <TextInput
                                     style={pagAluno.input}
                                     keyboardType="numeric"
@@ -65,7 +66,7 @@ export default class PagNota extends Component {
                                 />
                             </View>
                             <View style={pagAluno.campos}>
-                                <Text>Bimestre:</Text>
+                                <Text style={pagAluno.titleInput}>Bimestre:</Text>
                                 <TextInput
                                     style={pagAluno.input}
                                     keyboardType="numeric"

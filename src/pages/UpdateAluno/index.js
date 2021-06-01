@@ -36,7 +36,7 @@ export default class PagNota extends Component {
                 <View style={app.conteine}>
                     <View style={pagAluno.margin}>
                         <View style={pagAluno.campos}>
-                            <Text>Aluno:</Text>
+                            <Text style={pagAluno.titleInput}>Aluno:</Text>
                             <TextInput
                                 style={pagAluno.input}
                                 placeholder="Infome o nome do aluno(a)"
@@ -45,7 +45,7 @@ export default class PagNota extends Component {
                             />
                         </View>
                         <View style={pagAluno.campos}>
-                            <Text>Turma:</Text>
+                            <Text style={pagAluno.titleInput}>Turma:</Text>
                             <TextInput
                                 style={pagAluno.input}
                                 keyboardType="numeric"

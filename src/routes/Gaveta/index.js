@@ -15,7 +15,7 @@ export default class Gaveta extends Component {
       <Drawer.Navigator initialRouteName={"ListaAluno"} 
       drawerStyle={ isLargeScreen ? {backgroundColor: "#adadad" } : { width: '100%', backgroundColor: "#adadad"  }} 
       drawerType='back' edgeWidth={width / 3} keyboardDismissMode={'on-drag'}>
-        <Drawer.Screen name="ListAluno" component={ListAluno} options={{ title: 'Lista de Alunos' }} />
+        <Drawer.Screen name="ListAluno" component={ListAluno} options={{ title: 'Lista de alunos' }} />
         <Drawer.Screen name='PagAluno' component={PagAluno} options={{ title: 'Cadastrar alunos' }} />
         <Drawer.Screen name='ListNota' component={ListNota} options={{ title: 'Lista de notas' }} />
       </Drawer.Navigator>

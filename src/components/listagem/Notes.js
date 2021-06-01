@@ -23,12 +23,12 @@ export default class Students extends Component {
             <View style={(this.state.c) ? list.lista2 : app.deletado}>
                 <View style={(this.props.idNotas % 2 == 0) ? list.centerPar : list.center}>
                     <View>
-                        <Text>Id Nota: {this.props.idNotas}</Text>
-                        <Text>Estudante: {this.props.nomeAluno}</Text>
-                        <Text>Disciplina: {this.props.disciplina}</Text>
-                        <Text>Nota: {this.props.nota}</Text>
-                        <Text>Bimestre: {this.props.bimestre}</Text>
-                        <Text>Id Aluno: {this.props.idAluno}</Text>
+                        <Text style={list.title}>ID: {this.props.idNotas}</Text>
+                        <Text style={list.title}>Estudante: <Text style={list.valores}>{this.props.nomeAluno}</Text></Text>
+                        <Text style={list.title}>Disciplina: <Text style={list.valores}>{this.props.disciplina}</Text></Text>
+                        <Text style={list.title}>Nota: <Text style={list.valores}>{this.props.nota}</Text></Text>
+                        <Text style={list.title}>Bimestre: <Text style={list.valores}>{this.props.bimestre}</Text></Text>
+                        <Text style={list.title}>Nº: {this.props.idAluno}</Text>
                     </View>
                     <View style={list.botaoView}>
                         <TouchableOpacity style={list.botao} onPress={() => { this.props.metodo.navigate('UpdateNotas', { idNotas: this.props.idNotas, nomeAluno: this.props.nomeAluno, disciplina: this.props.disciplina }) }}>

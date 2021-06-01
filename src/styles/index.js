@@ -34,12 +34,13 @@ const app = StyleSheet.create({
 });
 const mensagens = StyleSheet.create({
   frase: {
-    fontSize: 16,
+    fontFamily: 'Roboto-Light',
+    fontSize: (width / 26),
     textAlign: 'center'
   },
   autor: {
-    fontStyle: 'italic',
-    fontSize: 12
+    fontSize: (width / 30),
+    fontFamily: 'Roboto-Italic'
   },
 });
 const list = StyleSheet.create({
@@ -66,20 +67,28 @@ const list = StyleSheet.create({
     padding: 10
   },
   botaoText: {
-    fontSize: 14,
+    fontSize: (width / 32),
     color: 'red',
     textAlign: 'right'
   },
   botaoText1: {
-    fontSize: 14,
+    fontSize: (width / 32),
     color: 'white',
     textAlign: 'right'
   },
   botaoText2: {
-    fontSize: 14,
+    fontSize: (width / 32),
     color: 'green',
     textAlign: 'right'
   },
+  title: {
+    fontSize: (width / 26),
+    fontFamily: 'Reboto-Bold'
+  },
+  valores: {
+    fontSize: (width / 28),
+    fontFamily: 'Reboto-Thin'
+  }
 });
 const pagAluno = StyleSheet.create({
   margin: {
@@ -98,14 +107,27 @@ const pagAluno = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5
   },
+  botaoText: {
+    fontSize: (width / 34),
+    fontFamily: 'Roboto-Bold'
+
+  },
   select: {
     borderBottomWidth: 1,
     borderBottomColor: 'red',
   },
+  picker: {
+  },
   input: {
-    width: width
+    width: width,
+    fontSize: (width / 30),
+    fontFamily: 'Roboto-Bold',
+  },
+  titleInput: {
+    fontSize: (width / 30),
+    fontFamily: 'Roboto-Bold'
+
   }
-  
 })
 
 export { app, mensagens, list, pagAluno };

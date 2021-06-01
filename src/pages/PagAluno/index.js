@@ -35,7 +35,7 @@ export default class PagAluno extends Component {
         <View style={app.conteine}>
           <View style={pagAluno.margin}>
             <View style={pagAluno.campos}>
-              <Text>Nome:</Text>
+              <Text style={pagAluno.titleInput}>Nome:</Text>
               <TextInput
                 style={pagAluno.input}
                 placeholder="Informe o nome do aluno(a)"
@@ -44,7 +44,7 @@ export default class PagAluno extends Component {
               />
             </View>
             <View style={pagAluno.campos}>
-              <Text>Turma:</Text>
+              <Text style={pagAluno.titleInput}>Turma:</Text>
               <TextInput
                 style={pagAluno.input}
                 placeholder="Informe a turma do aluno(a)"
