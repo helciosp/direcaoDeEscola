@@ -6,7 +6,7 @@ import TbNotas from '../../my_db/TbNotas';
 import { list, app } from '../../styles/index';
 
 const db = new TbNotas();
-const botao = ['Modificar', 'Deletar']
+const botao = ['Modificar', 'Deletar', 'Fechar']
 export default class Students extends Component {
     constructor(props) {
         super(props);
@@ -47,7 +47,7 @@ export default class Students extends Component {
                             ActionSheet.show(
                                 {
                                     options: botao,
-                                    cancelButtonIndex: 3,
+                                    cancelButtonIndex: 2,
                                     title: this.props.nomeAluno
                                 },
                                 buttonIndex => {
