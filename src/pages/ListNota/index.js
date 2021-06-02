@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { View, Text, FlatList } from 'react-native'
-import Notes from '../../components/listagem/Notes.js'
+import React, { Component } from 'react';
+import { View, FlatList } from 'react-native';
+import { Root } from "native-base";
+import Notes from '../../components/listagem/Notes.js';
 import TbNotas from '../../my_db/TbNotas';
-import { app, students } from '../../styles/index.js'
+import { app } from '../../styles/index.js'
 
 const db = new TbNotas();
 
@@ -14,7 +15,7 @@ export default class ListAluno extends Component {
         }
     }
 
-    componentDidMount(){   
+    componentDidMount() {
         this.props.navigation.addListener('focus', () => {
             this.listarNotas()
         });
@@ -27,13 +28,15 @@ export default class ListAluno extends Component {
     }
     render() {
         return (
-            <View style={app.pagina}>            
-                <FlatList
-                    data={this.state.notes}
-                    keyExtractor={(item, index) => item.idNotas + ''}
-                    renderItem={({ item }) => <Notes {...item} metodo={this.props.navigation}/>}
-                />
-            </View>
+            <Root>
+                <View style={app.pagina}>
+                    <FlatList
+                        data={this.state.notes}
+                        keyExtractor={(item, index) => item.idNotas + ''}
+                        renderItem={({ item }) => <Notes {...item} metodo={this.props.navigation} />}
+                    />
+                </View>
+            </Root>
         )
     }
 }

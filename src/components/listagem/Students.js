@@ -1,20 +1,35 @@
-import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import TbAluno from '../../my_db/TbAluno'
-import { list, app } from '../../styles/index.js'
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity, PixelRatio } from 'react-native';
+import { ActionSheet } from "native-base";
+import Dots from 'react-native-vector-icons/Octicons';
+import TbAluno from '../../my_db/TbAluno';
+import { list, app } from '../../styles/index.js';
 
 const db = new TbAluno();
-
+const botao = ['Adicionar nota', 'Modificar', 'Deletar', 'Fechar'];
 export default class Students extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            c: 1
+            c: 1,
         }
     }
     delete(id) {
         db.deletar(id)
         this.setState({ c: 0 })
+    }
+    operacao(index) {
+        switch (index) {
+            case 0:
+                this.props.metodo.navigate('PagNota', { idAluno: this.props.idAluno, nomeAluno: this.props.nomeAluno })
+                break;
+            case 1:
+                this.props.metodo.navigate('UpdateAluno', { idAluno: this.props.idAluno })
+                break;
+            case 2:
+                this.delete(this.props.idAluno)
+                break;
+        }
     }
     render() {
         return (
@@ -26,20 +41,22 @@ export default class Students extends Component {
                         <Text style={list.title}>Turma: <Text style={list.valores}>{this.props.turma}</Text></Text>
                     </View>
                     <View style={list.botaoView}>
-                        <TouchableOpacity style={list.botao} onPress={() => { this.props.metodo.navigate('PagNota', { idAluno: this.props.idAluno, nomeAluno: this.props.nomeAluno }) }}>
+                        <TouchableOpacity
+                            hitSlop={{right: 10, top: 10, bottom: 15, left: 15}}
+                            onPress={() =>
+                            ActionSheet.show(
+                                {
+                                    options: botao,
+                                    cancelButtonIndex: 3,
+                                    title: this.props.nomeAluno
+                                },
+                                buttonIndex => {
+                                    this.operacao(buttonIndex)
+                                },
+                            )}
+                        >
                             <View>
-                                <Text style={list.botaoText2}>Adicionar nota</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={list.botao} onPress={() => { this.props.metodo.navigate('UpdateAluno', { idAluno: this.props.idAluno }) }}>
-                            <View>
-                                <Text style={list.botaoText1}>Modificar</Text>
-                            </View>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={list.botao} onPress={() => this.delete(this.props.idAluno)}>
-                            <View>
-                                <Text style={list.botaoText}>Deletar</Text>
+                                <Dots name='kebab-vertical' size={(15 * PixelRatio.get())} />
                             </View>
                         </TouchableOpacity>
                     </View>

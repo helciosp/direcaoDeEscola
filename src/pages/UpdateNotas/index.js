@@ -13,8 +13,6 @@ export default class PagNota extends Component {
             disciplina: '',
             nota: '',
             bimestre: '',
-            mensagem: '',
-            c: 1
         };
     }
 

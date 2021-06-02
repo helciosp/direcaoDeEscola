@@ -12,8 +12,6 @@ export default class PagNota extends Component {
             idAluno: '',
             nomeAluno: '',
             turma: '',
-            mensagem: '',
-            c: 1
         };
     }
 
