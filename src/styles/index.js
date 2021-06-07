@@ -20,7 +20,7 @@ const app = StyleSheet.create({
     color: "red",
   },
   deletado: {
-    display: "none"
+    display: 'none',
   },
   list: {
     flex: 6,
@@ -46,11 +46,11 @@ const mensagens = StyleSheet.create({
 const list = StyleSheet.create({
   lista: {
     marginHorizontal: wp('10%'),  
-    marginVertical: hp('2.5%'),
+    marginVertical: hp('4%'),
   },
   lista2: {
     marginHorizontal: wp('10%'),  
-    marginVertical: hp('2.5%'),
+    marginVertical: hp('4%'),
   },
   center: {
     backgroundColor: '#999999',
@@ -88,6 +88,39 @@ const list = StyleSheet.create({
   valores: {
     fontSize: (width / 28),
     fontFamily: 'Reboto-Thin'
+  },
+  modalCont: {
+    position: 'absolute',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 10,
+    elevation: 2,
+  },
+  modalTextMensagem: {
+    textAlign: 'center',
+    fontSize: (width / 32),
+    fontFamily: 'Reboto-Bold'
+  },
+  modalContBotao: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  modalSim: {
+    backgroundColor: '#fff',
+    borderColor: '#149ee3',
+    borderRadius: 10,
+    padding: 5,
+    borderWidth: 1,
+
+  },
+  modalNao: {
+    backgroundColor: '#149ee3',
+    borderColor: '#149ee3',
+    borderRadius: 10,
+    padding: 5,
+    borderWidth: 1,
+    marginHorizontal: 3
   }
 });
 const pagAluno = StyleSheet.create({

@@ -11,12 +11,13 @@ export default class Students extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            c: 1
+            c: 1,
+            visible: 0
         }
     }
     delete(idNotas) {
         db.deletarNotas(idNotas);
-        this.setState({ c: 0 })
+        this.setState({ c: 0, visible: 0 })
     }
     operacao(index) {
         switch (index) {
@@ -24,7 +25,7 @@ export default class Students extends Component {
                 this.props.metodo.navigate('UpdateNotas', { idNotas: this.props.idNotas, nomeAluno: this.props.nomeAluno, disciplina: this.props.disciplina })
             break;
             case 1: 
-                this.delete(this.props.idNotas)
+            this.setState({ visible: 1 })
             break;
         }
     }
@@ -60,6 +61,20 @@ export default class Students extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
+                {this.state.visible ?
+                    <View style={list.modalCont}>
+                        <View>
+                            <Text style={list.modalTextMensagem}>Tem certesa que deseja deletar {this.props.nomeAluno} dessa lista de notas?</Text>
+                        </View>
+                        <View style={list.modalContBotao}>
+                            <TouchableOpacity style={list.modalSim} onPress={() => { this.delete(this.props.idAluno) }}>
+                                <Text>Sim!</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={list.modalNao} onPress={() => { this.setState({ visible: false }) }}>
+                                <Text>Não!</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View> : null}
             </View>
         );
     }
