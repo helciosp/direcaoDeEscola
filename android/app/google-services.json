@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "325764850765",
-    "project_id": "direcao-de-escola",
-    "storage_bucket": "direcao-de-escola.appspot.com"
+    "project_number": "283682372832",
+    "project_id": "direcao-de-escola-e6327",
+    "storage_bucket": "direcao-de-escola-e6327.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:325764850765:android:c43bfad3bfd749c4a46804",
+        "mobilesdk_app_id": "1:283682372832:android:34e48f4932c3a5d459a485",
         "android_client_info": {
           "package_name": "com.direcaodeescola"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "325764850765-vk1i27a7s4kb71gqr85j4dohsjv3i2ai.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCznCJ7xiSkD_93WNWdhm1U7uiNw2cfWSY"
+          "current_key": "AIzaSyBhv6K0nb2AmArD-W466dQLKgSMrdYGCxM"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "325764850765-vk1i27a7s4kb71gqr85j4dohsjv3i2ai.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

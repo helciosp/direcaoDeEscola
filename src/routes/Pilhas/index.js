@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import PagNota from '../../pages/PagNota';
 import UpdateAluno from '../../pages/UpdateAluno';
 import UpdateNotas from '../../pages/UpdateNotas';
@@ -8,7 +8,7 @@ import Gaveta from '../Gaveta';
 import IconDrawer from '../../components/InconDrawer';
 import { header } from '../../options/index';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default class Pilhas extends Component {
     render() {
