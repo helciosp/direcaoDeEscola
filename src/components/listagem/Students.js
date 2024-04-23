@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, PixelRatio } from 'react-native';
-import { ActionSheet } from "native-base";
-import Dots from 'react-native-vector-icons/Octicons';
+import { View, Text, TouchableOpacity } from 'react-native';
 import TbAluno from '../../my_db/TbAluno';
 import { list, app } from '../../styles/index.js';
+import ActionSheetStudents from './ActionSheetStudents';
 
 const db = new TbAluno();
 const botao = ['Adicionar nota', 'Modificar', 'Deletar', 'Fechar'];
 export default class Students extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
             c: 1,
-            visible: 0
-        }
+            visible: 0,
+        } 
     }
     delete(id) {
         db.deletar(id)
@@ -41,25 +41,8 @@ export default class Students extends Component {
                         <Text style={list.title}>Estudante: <Text style={list.valores}>{this.props.nomeAluno}</Text></Text>
                         <Text style={list.title}>Turma: <Text style={list.valores}>{this.props.turma}</Text></Text>
                     </View>
-                    <View style={list.botaoView}>
-                        <TouchableOpacity
-                            hitSlop={{ right: 10, top: 10, bottom: 15, left: 15 }}
-                            onPress={() =>
-                                ActionSheet.show(
-                                    {
-                                        options: botao,
-                                        cancelButtonIndex: 3,
-                                        title: this.props.nomeAluno
-                                    },
-                                    buttonIndex => {
-                                        this.operacao(buttonIndex)
-                                    },
-                                )}
-                        >
-                            <View>
-                                <Dots name='kebab-vertical' size={(15 * PixelRatio.get())} />
-                            </View>
-                        </TouchableOpacity>
+                    <View style={list.botaoView}>      
+                        <ActionSheetStudents pagNota={() => this.operacao(0)} updateAluno={() => this.operacao(1)} excluir={() => this.operacao(2)}/>
                     </View>
                 </View>
                 {this.state.visible ?

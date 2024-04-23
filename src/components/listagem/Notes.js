@@ -4,6 +4,7 @@ import { ActionSheet } from "native-base";
 import Dots from 'react-native-vector-icons/Octicons';
 import TbNotas from '../../my_db/TbNotas';
 import { list, app } from '../../styles/index';
+import ActionSheetNotes from './ActionSheetNotes';
 
 const db = new TbNotas();
 const botao = ['Modificar', 'Deletar', 'Fechar']
@@ -42,23 +43,7 @@ export default class Students extends Component {
                         <Text style={list.title}>Nº: {this.props.idAluno}</Text>
                     </View>
                     <View style={list.botaoView}>
-                        <TouchableOpacity 
-                            hitSlop={{right: 10, top: 10, bottom: 15, left: 15}}
-                            onPress={() =>
-                            ActionSheet.show(
-                                {
-                                    options: botao,
-                                    cancelButtonIndex: 2,
-                                    title: this.props.nomeAluno
-                                },
-                                buttonIndex => {
-                                    this.operacao(buttonIndex)
-                                },
-                            )}>
-                            <View>
-                                <Dots name='kebab-vertical' size={(15 * PixelRatio.get())} />
-                            </View>
-                        </TouchableOpacity>
+                        <ActionSheetNotes updateNotas={() => this.operacao(0)} deletar={() => this.operacao(1)}/>
                     </View>
                 </View>
                 {this.state.visible ?
