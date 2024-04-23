@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, FlatList, Text } from 'react-native';
-import { Root } from "native-base";
 import Students from '../../components/listagem/Students.js';
 import TbAluno from '../../my_db/TbAluno';
 import { app, mensagens } from '../../styles/index.js';
@@ -45,22 +44,19 @@ export default class ListAluno extends Component {
     }
     render() {
         return (
-            <Root>
-                <View style={app.pagina}>
-                    <View style={app.mensagens}>
-                        <Text style={mensagens.frase}>{this.state.mensagens[this.state.condicao]}</Text>
-                        <Text style={mensagens.autor}>{this.state.autor[this.state.condicao]}</Text>
-                    </View>
-
-                    <View style={app.list}>
-                        <FlatList
-                            data={this.state.students}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item }) => <Students {...item} metodo={this.props.navigation} />}
-                        />
-                    </View>
+            <View style={app.pagina}>
+                <View style={app.mensagens}>
+                    <Text style={mensagens.frase}>{this.state.mensagens[this.state.condicao]}</Text>
+                    <Text style={mensagens.autor}>{this.state.autor[this.state.condicao]}</Text>
                 </View>
-            </Root>
+                <View style={app.list}>
+                    <FlatList
+                        data={this.state.students}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) => <Students {...item} metodo={this.props.navigation} />}
+                    />
+                </View>
+            </View>
         )
     }
 }

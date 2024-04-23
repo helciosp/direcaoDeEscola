@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableNativeFeedback } from 'react-native';
-import { Toast, Root } from "native-base";
+import { Toast } from "native-base";
 import { pagAluno, app } from '../../styles/index.js';
 import TbAluno from '../../my_db/TbAluno';
 import Aluno from '../../model/Aluno.js';
@@ -41,50 +41,48 @@ export default class PagNota extends Component {
 
     render() {
         return (
-            <Root>
-                <View style={app.pagina}>
-                    <View style={app.conteine}>
-                        <View style={pagAluno.margin}>
-                            <View style={pagAluno.campos}>
-                                <Text style={pagAluno.titleInput}>Aluno:</Text>
-                                <TextInput
-                                    style={pagAluno.input}
-                                    placeholder="Infome o nome do aluno(a)"
-                                    maxLength={30}
-                                    onChangeText={(nom) => this.setState({ nomeAluno: nom })}
-                                />
-                            </View>
-                            <View style={pagAluno.campos}>
-                                <Text style={pagAluno.titleInput}>Turma:</Text>
-                                <TextInput
-                                    style={pagAluno.input}
-                                    keyboardType="numeric"
-                                    placeholder="Informe a turma"
-                                    maxLength={10}
-                                    onChangeText={(tur) => this.setState({ turma: tur })}
-                                />
-                            </View>
-
-                            <TouchableNativeFeedback
-                                onPress={() => {
-                                    this.Update(this.state.nomeAluno, this.state.turma);
-                                }}
-                                background={
-                                    Platform.OS === 'android'
-                                        ? TouchableNativeFeedback.SelectableBackground()
-                                        : ''
-                                }>
-                                <View style={pagAluno.botao}>
-                                    <Text style={pagAluno.botaoText}>
-                                        {'Modificar'}{' '}
-                                        {Platform.OS !== 'android' ? '(Android only)' : ''}
-                                    </Text>
-                                </View>
-                            </TouchableNativeFeedback>
+            <View style={app.pagina}>
+                <View style={app.conteine}>
+                    <View style={pagAluno.margin}>
+                        <View style={pagAluno.campos}>
+                            <Text style={pagAluno.titleInput}>Aluno:</Text>
+                            <TextInput
+                                style={pagAluno.input}
+                                placeholder="Infome o nome do aluno(a)"
+                                maxLength={30}
+                                onChangeText={(nom) => this.setState({ nomeAluno: nom })}
+                            />
                         </View>
+                        <View style={pagAluno.campos}>
+                            <Text style={pagAluno.titleInput}>Turma:</Text>
+                            <TextInput
+                                style={pagAluno.input}
+                                keyboardType="numeric"
+                                placeholder="Informe a turma"
+                                maxLength={10}
+                                onChangeText={(tur) => this.setState({ turma: tur })}
+                            />
+                        </View>
+
+                        <TouchableNativeFeedback
+                            onPress={() => {
+                                this.Update(this.state.nomeAluno, this.state.turma);
+                            }}
+                            background={
+                                Platform.OS === 'android'
+                                    ? TouchableNativeFeedback.SelectableBackground()
+                                    : ''
+                            }>
+                            <View style={pagAluno.botao}>
+                                <Text style={pagAluno.botaoText}>
+                                    {'Modificar'}{' '}
+                                    {Platform.OS !== 'android' ? '(Android only)' : ''}
+                                </Text>
+                            </View>
+                        </TouchableNativeFeedback>
                     </View>
                 </View>
-            </Root>
+            </View>
         );
     }
 }

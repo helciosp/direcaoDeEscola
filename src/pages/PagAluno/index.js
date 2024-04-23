@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableNativeFeedback } from 'react-native';
-import { Toast, Root } from "native-base";
+import { Toast } from "native-base";
 import TbAluno from '../../my_db/TbAluno';
 import Aluno from '../../model/Aluno.js';
 import { app, pagAluno } from '../../styles/index.js';
@@ -39,7 +39,6 @@ export default class PagAluno extends Component {
   }
   render() {
     return (
-      <Root>
         <View style={app.pagina}>
           <View style={app.conteine}>
             <View style={pagAluno.margin}>
@@ -81,7 +80,6 @@ export default class PagAluno extends Component {
             </View>
           </View>
         </View>
-      </Root>
     );
   }
 }
